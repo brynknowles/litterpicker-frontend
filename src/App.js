@@ -1,43 +1,33 @@
+// src/App.js : This is the file for App Component. 
+// App Component is the main component in React which acts as a container for all other components.
+
+
+
 // import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header'
 import NavBar from './components/NavBar'
-import MainContent from './components/MainContent'
+import Content from './components/Content'
 import Footer from './components/Footer'
 
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <NavBar />
-      <MainContent />
-      <Footer />
-    </div>
+      <div className="container">
+        <div className="header">
+          <Header />
+        </div>
+        <div className="nav">
+          <NavBar />
+        </div>
+        <div className="content">
+          <Content />
+        </div>
+        <div className="footer">
+          <Footer />
+        </div>
+      </div>
   );
 }
 
 export default App;
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
-// export default App;

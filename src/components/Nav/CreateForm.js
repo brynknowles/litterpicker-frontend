@@ -1,6 +1,6 @@
 
 function CreateForm() {
-    return <button>Create</button>
+    return <button><i class="fas fa-plus"></i></button>
 }
 
 export default CreateForm;

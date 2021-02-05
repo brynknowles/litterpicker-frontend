@@ -1,3 +1,8 @@
+// src/index.js: This is the javascript file corresponding to index.html. 
+//This file has the following line of code which is very significant. 
+//ReactDOM.render(<App />, document.getElementById(‘root’));
+
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';

@@ -2,8 +2,7 @@
 function Footer() {
     return (
         <div className="footer">
-            <hr></hr>
-            <h4>©2021 Bryn Knowles</h4>
+            <h6>©2021 Bryn Knowles</h6>
         </div>
     )
 }

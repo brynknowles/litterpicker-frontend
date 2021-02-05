@@ -1,3 +1,7 @@
+/* src/index.css: The CSS file corresponding to index.js. */
+
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -7,7 +11,55 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
+/* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+} */
+
+.container > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  color: #A6F6DA;
 }
+
+html, body {
+background-color: #319873;
+margin: 10px;
+}
+
+.container > div:nth-child(1n) {
+/* background-color: #319873; */
+background-color: #005D3C;
+
+}
+
+.container > div:nth-child(3n) {
+background-color: #319873;
+}
+
+.container > div:nth-child(2n) {
+  background-color: #319873;
+    /* background-color: #005D3C; */
+}
+
+.container > div:nth-child(4n) {
+    background-color: #005D3C;
+}
+
+
+/* body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+} */
+
