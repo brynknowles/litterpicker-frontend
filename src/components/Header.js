@@ -1,20 +1,15 @@
 import LoginForm from "../components/Header/LoginForm"
 import SignupForm from "../components/Header/SignupForm"
 
-
-function Header() {
+function Header({ title }) {
     return (
-        <div className="header">
-            <h1>LitterPicker</h1>
-            {/* <div className="login-form">
-                <button>login</button>
-            </div> */}
-            {/* <div className="signup-form">
-                <button>signup</button>
-            </div> */}
+        <header>
+            {title}
+            <button>login</button>
+            <button>signup</button>
             {/* <LoginForm /> */}
             {/* <SignupForm /> */}
-        </div>
+        </header>
     )
 }
 

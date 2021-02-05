@@ -1,5 +1,5 @@
 function HomePage() {
-    return <button>Home</button>
+    return <button><i class="fas fa-home"></i></button>
 }
 
 export default HomePage;

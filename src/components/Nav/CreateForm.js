@@ -1,6 +1,10 @@
 
 function CreateForm() {
-    return <button><i class="fas fa-plus"></i></button>
+    return (
+        <form>
+            //form inputs here
+        </form>
+    )
 }
 
 export default CreateForm;
