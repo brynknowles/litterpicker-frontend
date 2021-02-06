@@ -1,65 +1,253 @@
 /* src/index.css: The CSS file corresponding to index.js. */
 
+/* main font
+font-family: 'Duru Sans', sans-serif; */
 
+/* minor font
+font-family: 'Open Sans', sans-serif; 
+*/
+
+:root {
+    --light-green: #A6F6DA;
+    --mid-green: #319873;
+    --dark-green: #00311F;
+    --mid-turquoise: #14d5c9;
+    --dark-turquoise: #00333f;
+    --black: #030416;
+    --grey: #d6e2e7;
+    --dark-grey: #7f8a8e;
+    --yellow: #f9c51a;
+    --orange: #ff5c00;
+    --fuschia: #e80352;
+    --blue: #338fff;
+    --blue-dark: #145cb3;
+    --purple: #cda2ff;
+    --green: #00ef7c;
+    --color: var(--light-green);
+    --background: var(--mid-green);
+    --primary: var(--dark-green);
+}
+
+  /* layout */
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
 
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-family: 'Duru Sans', sans-serif;
+    font-size: 16px;
+    color: var(--color);
+    background-color: var(--background);
 }
 
-/* code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.App {
+    color: var(--color);
+    background-color: var(--background);
+    min-height: 100vh;
+}
+
+section {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* buttons */
+button {
+    margin: 10px;
+    padding: 0.5rem 0.75rem;
+    border: none;
+    font: inherit;
+    font-weight: 600;
+    color: inherit;
+    cursor: pointer;
+    color: var(--primary);
+    background-color: var(--light-green);
+    /* border: 2px solid var(--dark-green); */
+    transition: background-color 0.2s;
+    box-shadow: 0 4px 8px 0 var(--dark-green), 0 6px 20px 0 var(--dark-green);
+    border-radius: 10px;
+
+}
+
+button.active,
+button:focus,
+button:hover {
+    outline: none;
+    color: var(--white);
+    background-color: var(--primary);
+    border: 2px solid var(--primary);
+    box-shadow: 0 4px 8px 0 var(--dark-green), 0 6px 20px 0 var(--dark-green);
+}
+
+button:disabled {
+    cursor: not-allowed;
+    color: var(--dark-grey);
+    background-color: var(--grey);
+}
+
+button.blue {
+    border: 2px solid var(--blue-dark);
+    color: var(--blue);
+}
+
+button.blue.active,
+button.blue:focus,
+button.blue:hover {
+    color: var(--white);
+    background-color: var(--blue);
+    border: 2px solid var(--blue);
+}
+
+/* links */
+a {
+    color: var(--color);
+    border-bottom: 1px solid var(--color);
+    text-decoration: none;
+}
+
+a:hover {
+    background-color: var(--blue);
+    border-bottom: 1px solid var(--blue);
+}
+
+/* header */
+header {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+
+header .title {
+    text-shadow: 0 4px 8px var(--dark-green), 0 6px 20px var(--dark-green);
+}
+
+/* .logo {
+    color: var(--turquoise);
+    font-size: 1.25em;
+    font-family: Helvetica;
+    margin-right: 0.5rem;
 } */
 
-.container > div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2em;
-  color: #A6F6DA;
+.nav {
+    padding: 1rem;
+    display: flex;
+    /* justify-content: space-between; */
+    justify-content: center;
+    align-content: center;
 }
 
-html, body {
-background-color: #319873;
-margin: 10px;
+/* forms */
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    margin: 0 auto;
+    border: 2px solid var(--green);
+    padding: 1.75rem;
 }
 
-.container > div:nth-child(1n) {
-/* background-color: #319873; */
-background-color: #005D3C;
-
+.form h3 {
+    margin-bottom: 1rem;
 }
 
-.container > div:nth-child(3n) {
-background-color: #319873;
+input,
+textarea,
+select {
+    margin-top: 0.25rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+    transition: all 0.3s;
+    border: 2px solid var(--color);
 }
 
-.container > div:nth-child(2n) {
-  background-color: #319873;
-    /* background-color: #005D3C; */
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border: 2px solid var(--primary);
 }
 
-.container > div:nth-child(4n) {
-    background-color: #005D3C;
+.form button[type="submit"] {
+    width: 50%;
+    cursor: pointer;
 }
 
-
-/* body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Filter */
+.filter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1rem;
 }
 
-/* code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-} */
+.filter button {
+    margin: 0 1rem;
+}
 
+/* cards */
+.cards {
+    margin: 0 auto;
+    list-style: none;
+    width: 100%;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 2rem;
+    min-width: 0;
+    position: relative;
+    border-radius: 10px;
+    /* border: 2px solid var(--dark-green); */
+    box-shadow: 0 4px 8px 0 var(--dark-green), 0 6px 20px 0 var(--dark-green);
+}
+
+.card img {
+    width: 100%;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.card .details {
+    margin: 0.5rem;
+}
+
+.card .details h4 {
+    margin: 0.5rem 0;
+}
+
+.card .details p {
+    margin: 0.5rem 0;
+}
+
+.footer {
+    text-shadow: 0 4px 8px var(--dark-green), 0 6px 20px var(--dark-green);
+    text-align: center;
+}
+
+/* responsiveness */
+@media screen and (min-width: 640px) {
+    .cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    .card {
+        flex: 0 1 calc(50% - 4rem);
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .card {
+        flex: 0 1 calc(33% - 4rem);
+    }
+}

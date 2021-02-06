@@ -4,9 +4,13 @@ import SignupForm from "../components/Header/SignupForm"
 function Header({ title }) {
     return (
         <header>
-            {title}
-            <button>login</button>
-            <button>signup</button>
+            <div className="title">
+                <h1>LitterPicker</h1>
+            </div>
+            <div>
+                <button>login</button>
+                <button>signup</button>
+            </div>
             {/* <LoginForm /> */}
             {/* <SignupForm /> */}
         </header>
