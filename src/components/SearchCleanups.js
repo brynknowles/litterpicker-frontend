@@ -1,12 +1,12 @@
 
 
-function SearchBar({ searchTerm, setSearchTerm }) {
+function SearchCleanups({ searchTerm, setSearchTerm }) {
     return (
         <div className="searchbar">
             <input 
                 id="search-bar"
                 type="text"
-                placeholder="Search cleanups here..."
+                placeholder="Search by location..."
                 value={searchTerm}
                 onChange={e => setSearchTerm(e.target.value)}
             />
@@ -14,4 +14,4 @@ function SearchBar({ searchTerm, setSearchTerm }) {
     )
 }
 
-export default SearchBar
+export default SearchCleanups;

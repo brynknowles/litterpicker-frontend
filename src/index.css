@@ -77,7 +77,7 @@ button.active,
 button:focus,
 button:hover {
     outline: none;
-    color: var(--white);
+    color: var(--light-green);
     background-color: var(--primary);
     border: 2px solid var(--primary);
     box-shadow: 0 4px 8px 0 var(--dark-green), 0 6px 20px 0 var(--dark-green);
@@ -87,19 +87,6 @@ button:disabled {
     cursor: not-allowed;
     color: var(--dark-grey);
     background-color: var(--grey);
-}
-
-button.blue {
-    border: 2px solid var(--blue-dark);
-    color: var(--blue);
-}
-
-button.blue.active,
-button.blue:focus,
-button.blue:hover {
-    color: var(--white);
-    background-color: var(--blue);
-    border: 2px solid var(--blue);
 }
 
 /* links */

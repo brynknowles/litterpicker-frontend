@@ -3,25 +3,52 @@
 
 
 import './App.css';
-import { Redirect, Route, Switch } from 'react-router-dom'
+// import { Redirect, Route, Switch } from 'react-router-dom'
+import React, { useState } from 'react'
 import Header from './components/Header'
-import HomePage from './components/HomePage'
 import NavBar from './components/NavBar'
-import Content from './components/Content'
+// import Home from './pages/Home'
+// import { Home, Explore, Profile, Create } from './pages'
+import Home from './components/Home'
+import Explore from './components/Explore'
+import Profile from './components/Profile'
+import Create from './components/Create'
 import Footer from './components/Footer'
 
 function App() {
+  const [selectedNav, setSelectedNav] = useState("home")
+
+  let pageToDisplay = <Home />
+
+  if (selectedNav === "home") {
+    pageToDisplay = <Home /> 
+  } else if (selectedNav === "explore") {
+    pageToDisplay = <Explore /> 
+  } else if (selectedNav === "profile") {
+    pageToDisplay = <Profile />
+  } else if (selectedNav === "create") {
+    pageToDisplay = <Create />
+  }
+
+  function handleNavSelection(newSelection) {
+    console.log(newSelection)
+    setSelectedNav(newSelection)
+  }
 
   return (
       <div className="App">
         <Header />
-        <Switch>
+        {/* <Switch>
           <Route path="/">
-            <HomePage />
+            <Home />
           </Route>
-        </Switch>
-        <NavBar />
-        <Content />
+        </Switch> */}
+        <NavBar selectedNav={selectedNav} onNavClick={handleNavSelection} />
+        {pageToDisplay}
+        {/* <Home /> */}
+        {/* <Explore /> */}
+        {/* <Profile /> */}
+        {/* <Create /> */}
         <Footer />
       </div>
   );

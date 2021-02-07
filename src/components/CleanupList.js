@@ -12,4 +12,4 @@ function CleanupList({ cleanups }) {
     )
 }
 
-export default CleanupList
+export default CleanupList;

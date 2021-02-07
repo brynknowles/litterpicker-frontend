@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import ProfileList from './ProfileList'
 
 
-function ProfileContainer() {
+function Profile() {
     const [users, setUsers] = useState([])
 
     useEffect(() => {
@@ -12,13 +12,12 @@ function ProfileContainer() {
         .then(setUsers)
     }, [])
 
-
     return (
         <>
+            <h1>Profile Page</h1>
             <ProfileList users={users} />
-            {/* <ProfileCard /> */}
         </>
     )
 }
 
-export default ProfileContainer
+export default Profile;

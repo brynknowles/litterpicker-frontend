@@ -13,7 +13,7 @@ function ProfileList({ users }) {
     </section>)
 }
 
-export default ProfileList
+export default ProfileList;
 
 {/* <section>
 <h1>Cleanup List</h1>

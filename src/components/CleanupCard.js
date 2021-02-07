@@ -3,19 +3,21 @@ import React, { useState } from 'react'
 function CleanupCard({ cleanup }) {
     const { id, name, category, image, date, duration, comment, cheer, user, location } = cleanup
     // console.log(user)
-    const [giveCheers, setGiveCheers] = useState(0)
-    console.log("giveCheers in CleanupCard", giveCheers)
+    const [claps, setClaps] = useState(0)
+    // console.log("claps in CleanupCard", claps)
 
-    function handleCheersClick() {
+    function handleClapsClick() {
         console.log("clicked")
-        setGiveCheers(giveCheers + 1);
+        setClaps((claps) => {
+            return claps + 1
+        });
     }
 
     return (
         <li className="card">
             <div className="image">
                 <img src={image} alt="cleanup site" width="200px"/>
-                <button onClick={handleCheersClick}>👏 {cheer} </button>
+                <button onClick={handleClapsClick}>👏 {claps} </button>
             </div>
             <div className="details">
                 <h3>{name}</h3>
@@ -32,4 +34,4 @@ function CleanupCard({ cleanup }) {
     )
 }
 
-export default CleanupCard
+export default CleanupCard;
