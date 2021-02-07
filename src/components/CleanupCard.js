@@ -2,19 +2,20 @@ import React, { useState } from 'react'
 
 function CleanupCard({ cleanup }) {
     const { id, name, category, image, date, duration, comment, cheer, user, location } = cleanup
-    console.log(user)
-    const [cheers, setCheers] = useState(0)
+    // console.log(user)
+    const [giveCheers, setGiveCheers] = useState(0)
+    console.log("giveCheers in CleanupCard", giveCheers)
 
     function handleCheersClick() {
         console.log("clicked")
-        setCheers(cheers + 1);
+        setGiveCheers(giveCheers + 1);
     }
 
     return (
         <li className="card">
             <div className="image">
                 <img src={image} alt="cleanup site" width="200px"/>
-                <button onClick={handleCheersClick}>👏 Cheers! {cheer}</button>
+                <button onClick={handleCheersClick}>👏 {cheer} </button>
             </div>
             <div className="details">
                 <h3>{name}</h3>
