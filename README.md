@@ -1,8 +1,5 @@
 # LitterPicker 
-  ## is a web based app 
-  ## created with a Rails backend 
-  ## and using React Hooks for the frontend
-
+  ## is a web based app created using Rails and React Hooks
 
 
 ### Deployment
