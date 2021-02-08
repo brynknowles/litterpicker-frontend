@@ -12,11 +12,10 @@ function Explore({ users, cleanups, searchTerm, setSearchTerm}) {
     console.log(cleanups)
 
     return (
-        <>
-            <h1>Explore Page</h1>
+        <section>
             <SearchCleanups searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             <CleanupList cleanups={filteredCleanups}/>
-        </>
+        </section>
     )
 }
 

@@ -1,5 +1,5 @@
 
-function NavBar({ selectedNav, onNavClick }) {
+function NavBar({ selectedButton, onNavClick }) {
 
     // ROUTES
     // /home
@@ -10,16 +10,16 @@ function NavBar({ selectedNav, onNavClick }) {
 
     return (
     <div className="nav">
-        <span onClick={() => onNavClick("home")} className={selectedNav === "home" ? "item active" : "item"}>
+        <span onClick={() => onNavClick("Home")} className={selectedButton === "Home" ? "item active" : "item"}>
             <button className="home">Home</button>
         </span>
-        <span onClick={() => onNavClick("explore")} className={selectedNav === "explore" ? "item active" : "item"}>
+        <span onClick={() => onNavClick("Explore")} className={selectedButton === "Explore" ? "item active" : "item"}>
             <button className="explore">Explore</button>
         </span>
-        <span onClick={() => onNavClick("profile")} className={selectedNav === "profile" ? "item active" : "item"}>
+        <span onClick={() => onNavClick("Profile")} className={selectedButton === "Profile" ? "item active" : "item"}>
             <button className="profile">Profile</button>
         </span>
-        <span onClick={() => onNavClick("create")} className={selectedNav === "create" ? "item active" : "item"}>
+        <span onClick={() => onNavClick("Create")} className={selectedButton === "Create" ? "item active" : "item"}>
             <button className="create">Create</button>
         </span>
     </div>

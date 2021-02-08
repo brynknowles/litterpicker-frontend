@@ -6,10 +6,9 @@ function Profile({ cleanups, users }) {
     console.log("cleanups in Profile", cleanups)
 
     return (
-        <>
-            <h1>Profile Page</h1>
+        <section>
             <ProfileList users={users} />
-        </>
+        </section>
     )
 }
 

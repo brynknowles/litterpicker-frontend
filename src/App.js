@@ -19,7 +19,7 @@ function App() {
   const [users, setUsers] = useState([])
   const [cleanups, setCleanups] = useState([])
   const [searchTerm, setSearchTerm] = useState("")
-  const [selectedNav, setSelectedNav] = useState("home")
+  const [selectedButton, setSelectedButton] = useState("home")
 
   useEffect(() => {
       fetch("http://localhost:3000/users")
@@ -35,21 +35,30 @@ function App() {
     .then(setCleanups)
 }, [])
 
+console.log("cleanups in App:", cleanups)
+
+// adds new cleanup to list of cleanups
+function handleCreateCleanup(newCleanup) {
+  const newCleanupArray = [newCleanup, ...cleanups];
+  setCleanups(newCleanupArray);
+}
+
+// allows page navigation to work onClick in NavBar component
   let pageToDisplay = <Home />
 
-  if (selectedNav === "home") {
+  if (selectedButton === "Home") {
     pageToDisplay = <Home /> 
-  } else if (selectedNav === "explore") {
-    pageToDisplay = <Explore users={users} cleanups={cleanups} searchTerm={searchTerm} setSearchTerm={setSearchTerm} /> 
-  } else if (selectedNav === "profile") {
+  } else if (selectedButton === "Explore") {
+    pageToDisplay = <Explore users={users} cleanups={cleanups} searchTerm={searchTerm} setSearchTerm={setSearchTerm} onCreateCleanup={handleCreateCleanup} /> 
+  } else if (selectedButton === "Profile") {
     pageToDisplay = <Profile users={users} cleanups={cleanups} />
-  } else if (selectedNav === "create") {
+  } else if (selectedButton === "Create") {
     pageToDisplay = <Create />
   }
 
   function handleNavSelection(newSelection) {
     console.log(newSelection)
-    setSelectedNav(newSelection)
+    setSelectedButton(newSelection)
   }
 
   // <Switch>
@@ -72,8 +81,8 @@ function App() {
 
   return (
       <div className="App">
-        <Header />
-        <NavBar selectedNav={selectedNav} onNavClick={handleNavSelection} />
+        <Header selectedButton={selectedButton} />
+        <NavBar selectedButton={selectedButton} onNavClick={handleNavSelection} />
         {pageToDisplay}
         {/* <Home /> */}
         {/* <Explore /> */}
