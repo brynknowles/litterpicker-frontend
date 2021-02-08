@@ -11,10 +11,11 @@ function ProfileCard({ user }) {
                 <p>Age: {age}</p>
                 <p>Catchphrase: {catchphrase}</p>
                 <section>
+                    <h1>Badges</h1>
                     <ul>
                         <li>Park Badge: {park_badge}</li>
                         <li>Playground Badge: {playground_badge}</li>
-                        <li>Shoreline Badge: {shoreline_badge}</li>
+                        <li><i class="fas fa-umbrella-beach"></i> {shoreline_badge}</li>
                         <li>Trail Badge: {trail_badge}</li>
                         <li>General Badge: {general_badge}</li>
                     </ul>

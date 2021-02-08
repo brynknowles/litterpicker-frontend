@@ -1,6 +1,7 @@
 import ProfileCard from './ProfileCard'
 
 function ProfileList({ users }) {
+    console.log("users in ProfileList ", users)
 
     const displayUsers = users.map((user) => {
         return <ProfileCard key={user.id} user={user} />
@@ -14,8 +15,3 @@ function ProfileList({ users }) {
 }
 
 export default ProfileList;
-
-{/* <section>
-<h1>Cleanup List</h1>
-<ul className="cards">{displayCleanups}</ul>
-</section> */}

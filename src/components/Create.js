@@ -1,10 +1,10 @@
-
+import CleanupForm from './CleanupForm'
 
 function Create() {
     return (
         <>
-            <h1>Create Cleanup Page</h1>
-            <p>add cleanup form here</p>
+            <h1>Create a Cleanup Event</h1>
+            <CleanupForm />
         </>
     )
 }

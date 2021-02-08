@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 function CleanupCard({ cleanup }) {
-    const { id, name, category, image, date, duration, comment, cheer, user, location } = cleanup
+    const { name, category, image, date, duration, comment, user, location } = cleanup
     // console.log(user)
     const [claps, setClaps] = useState(0)
     // console.log("claps in CleanupCard", claps)

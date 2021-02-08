@@ -11,25 +11,19 @@ function NavBar({ selectedNav, onNavClick }) {
     return (
     <div className="nav">
         <span onClick={() => onNavClick("home")} className={selectedNav === "home" ? "item active" : "item"}>
-            <button className="home">home</button>
+            <button className="home">Home</button>
         </span>
         <span onClick={() => onNavClick("explore")} className={selectedNav === "explore" ? "item active" : "item"}>
-            <button className="explore">explore</button>
+            <button className="explore">Explore</button>
         </span>
         <span onClick={() => onNavClick("profile")} className={selectedNav === "profile" ? "item active" : "item"}>
-            <button className="profile">profile</button>
+            <button className="profile">Profile</button>
         </span>
         <span onClick={() => onNavClick("create")} className={selectedNav === "create" ? "item active" : "item"}>
-            <button className="create">create</button>
+            <button className="create">Create</button>
         </span>
     </div>
     )
 }
 
 export default NavBar;
-
-
-{/* <button><i class="fas fa-home"></i></button>
-<button><i class="fas fa-search-location"></i></button>
-<button><i class="far fa-user-circle"></i></button>
-<button><i class="fas fa-plus"></i></button> */}

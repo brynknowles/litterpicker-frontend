@@ -68,7 +68,7 @@ button {
     background-color: var(--light-green);
     /* border: 2px solid var(--dark-green); */
     transition: background-color 0.2s;
-    box-shadow: 0 4px 8px 0 var(--dark-green), 0 6px 20px 0 var(--dark-green);
+    box-shadow: 0 2px 4px 0 var(--dark-green), 0 3px 10px 0 var(--dark-green);
     border-radius: 10px;
 
 }
@@ -80,7 +80,7 @@ button:hover {
     color: var(--light-green);
     background-color: var(--primary);
     border: 2px solid var(--primary);
-    box-shadow: 0 4px 8px 0 var(--dark-green), 0 6px 20px 0 var(--dark-green);
+    box-shadow: 0 2px 4px 0 var(--dark-green), 0 3px 10px 0 var(--dark-green);
 }
 
 button:disabled {
@@ -110,7 +110,7 @@ header {
 }
 
 header .title {
-    text-shadow: 0 4px 8px var(--dark-green), 0 6px 20px var(--dark-green);
+    text-shadow: 0 2px 8px var(--dark-green), 0 6px 10px var(--dark-green);
 }
 
 /* .logo {
@@ -134,7 +134,7 @@ header .title {
     flex-direction: column;
     width: 500px;
     margin: 0 auto;
-    border: 2px solid var(--green);
+    border: 2px solid var(--primary);
     padding: 1.75rem;
 }
 
@@ -152,7 +152,7 @@ select {
     font-size: 1.25rem;
     font-weight: bold;
     transition: all 0.3s;
-    border: 2px solid var(--color);
+    border: 1px solid var(--primary);
 }
 
 input:focus,
@@ -194,7 +194,7 @@ select:focus {
     position: relative;
     border-radius: 10px;
     /* border: 2px solid var(--dark-green); */
-    box-shadow: 0 4px 8px 0 var(--dark-green), 0 6px 20px 0 var(--dark-green);
+    box-shadow: 0 2px 4px 0 var(--dark-green), 0 3px 10px 0 var(--dark-green);
 }
 
 .card img {
@@ -215,8 +215,12 @@ select:focus {
     margin: 0.5rem 0;
 }
 
+.card ul {
+    list-style-type: none;
+}
+
 .footer {
-    text-shadow: 0 4px 8px var(--dark-green), 0 6px 20px var(--dark-green);
+    text-shadow: 0 2px 8px var(--dark-green), 0 3px 10px var(--dark-green);
     text-align: center;
 }
 

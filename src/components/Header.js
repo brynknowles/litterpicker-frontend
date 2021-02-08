@@ -1,5 +1,5 @@
-import LoginForm from "../components/Header/LoginForm"
-import SignupForm from "../components/Header/SignupForm"
+// import LoginForm from "../components/Header/LoginForm"
+// import SignupForm from "../components/Header/SignupForm"
 
 function Header({ title }) {
     return (
@@ -8,8 +8,8 @@ function Header({ title }) {
                 <h1>LitterPicker</h1>
             </div>
             <div>
-                <button>login</button>
-                <button>signup</button>
+                <button>Login</button>
+                <button>Signup</button>
             </div>
             {/* <LoginForm /> */}
             {/* <SignupForm /> */}
