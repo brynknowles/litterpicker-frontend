@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function CleanupForm({ onCreateCleanup }) {
+function CleanupForm({ users, onCreateCleanup }) {
 
     const [formData, setFormData] = useState({
         name: "",
@@ -9,10 +9,11 @@ function CleanupForm({ onCreateCleanup }) {
         image: "",
         date: Date.now(),
         duration: 0,
-        comment: ""
+        comment: "",
+        username: ""
     });
 
-    console.log("form data ", formData)
+    // console.log("form data ", formData)
 
     function handleSubmit(event) {
         event.preventDefault()
@@ -31,6 +32,8 @@ function CleanupForm({ onCreateCleanup }) {
     }
 
     function handleChange(event) {
+        // console.log(event.target.id)
+        // console.log(event.target.value)
         const key = event.target.id;
         let value = event.target.value;
         setFormData({
@@ -68,6 +71,8 @@ function CleanupForm({ onCreateCleanup }) {
                 <input type="number"  id="duration" name="duration" value={formData.duration} onChange={handleChange}/>
                 <label htmlFor="comment">Comment:</label>
                 <input type="text"  id="comment" name="comment" value={formData.comment} onChange={handleChange}/>
+                <label htmlFor="username">Username:</label>
+                <input type="text"  id="username" name="username" value={formData.username} onChange={handleChange}/>
                 <button type="submit">Create Cleanup Event</button>
             </form>
         </section>

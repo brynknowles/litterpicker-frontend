@@ -1,19 +1,19 @@
 import { NavLink } from "react-router-dom";
 
 function NavBar({ currentUser, setCurrentUser }) {
-    console.log("current user in navbar", currentUser)
+    // console.log("current user in navbar", currentUser)
 
-    function login() {
-        fetch(`${process.env.REACT_APP_API_BASE_URL}/login`, {
-            method: "POST",
-        })
-            .then((r) => r.json())
-            .then(setCurrentUser);
-    }
+    // function login() {
+    //     fetch(`${process.env.REACT_APP_API_BASE_URL}/login`, {
+    //         method: "POST",
+    //     })
+    //         .then((r) => r.json())
+    //         .then(setCurrentUser);
+    // }
     
-    function logout() {
-        setCurrentUser(null);
-    }
+    // function logout() {
+    //     setCurrentUser(null);
+    // }
 
     return (
     <nav className="nav">
@@ -29,11 +29,11 @@ function NavBar({ currentUser, setCurrentUser }) {
         <NavLink exact to="/cleanups/new" className="button">
             Create
         </NavLink>
-        {currentUser ? (
+        {/* {currentUser ? (
             <button onClick={logout}>Logout</button>
         ) : (
             <button onClick={login}>Login</button>
-        )}
+        )} */}
         <NavLink exact to="/users/new" className="button">
             Signup
         </NavLink>

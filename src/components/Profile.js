@@ -1,6 +1,6 @@
 // import React, { useState, useEffect } from 'react'
 
-function Profile({ cleanups, users }) {
+function Profile({ users }) {
     // console.log("cleanups in Profile", cleanups)
 
     return (

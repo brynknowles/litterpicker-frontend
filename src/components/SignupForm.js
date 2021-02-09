@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 function SignupForm({ onCreateUser }) {
-    console.log("onCreateUser in SignupForm", onCreateUser)
+    // console.log("onCreateUser in SignupForm", onCreateUser)
     const [formData, setFormData] = useState({
         avatar: "",
         username: "",
@@ -27,7 +27,7 @@ function SignupForm({ onCreateUser }) {
             });
     }
 
-    console.log("form data ", formData)
+    // console.log("form data ", formData)
 
     function handleChange(event) {
         const key = event.target.id;
@@ -37,8 +37,6 @@ function SignupForm({ onCreateUser }) {
             [key]: value,
         });
     }
-
-
 
     return (
         <section>

@@ -1,11 +1,8 @@
 import React, { useState } from 'react'
 
 function CleanupCard({ cleanup }) {
-    // console.log("cleanup in CleanupCard:", { cleanup })
     const { name, location, category, image, date, duration, comment, users } = cleanup
-    // console.log("users in CleanupCard", users)
     const [claps, setClaps] = useState(0)
-    // console.log("claps in CleanupCard", claps)
 
     function handleClapsClick() {
         console.log("clicked")
@@ -25,7 +22,7 @@ function CleanupCard({ cleanup }) {
                 <p>Location: {location.name}</p>
                 <p>Category: {category}</p>
                 <p>Date: {date}</p>
-                <p>Duration: {duration} hr</p>
+                <p>Duration: {duration} hr(s)</p>
                 <p>Comment: {comment}</p>
             </div>
             <div className="profile-button">

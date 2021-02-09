@@ -2,22 +2,20 @@ import React, { useState, useEffect } from 'react'
 import SearchCleanups from "./SearchCleanups"
 import CleanupCard from "./CleanupCard"
 
-function CleanupList() {
-    const [cleanups, setCleanups] = useState([])
-    const [searchTerm, setSearchTerm] = useState("")
+function CleanupList({ cleanups, searchTerm, setSearchTerm }) {
+    // const [cleanups, setCleanups] = useState([])
+    // const [searchTerm, setSearchTerm] = useState("")
 
-    useEffect(() => {
-        fetch(`${process.env.REACT_APP_API_BASE_URL}/cleanups`)
-        // fetch(`${process.env.REACT_APP_API_BASE_URL}/cleanups`)
-        .then(r => r.json())
-        .then(setCleanups)
-    }, [])
+    console.log("cleanups in CleanupList: ", cleanups)
 
-    const filteredCleanups = cleanups.filter((cleanup) => {
-        // console.log("cleanup in search term filter: ", cleanup)
-        return cleanup.name.toLowerCase().includes(searchTerm.toLowerCase())
-    })
-    const displayCleanups = filteredCleanups.map((cleanup) => {
+    // useEffect(() => {
+    //     fetch(`${process.env.REACT_APP_API_BASE_URL}/cleanups`)
+    //     // fetch(`${process.env.REACT_APP_API_BASE_URL}/cleanups`)
+    //     .then(r => r.json())
+    //     .then(setCleanups)
+    // }, [])
+
+    const displayCleanups = cleanups.map((cleanup) => {
         return <CleanupCard key={cleanup.id} cleanup={cleanup} />
     })
 

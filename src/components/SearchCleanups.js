@@ -4,7 +4,7 @@ function SearchCleanups({ searchTerm, setSearchTerm }) {
     return (
         <div className="searchbar">
             <input 
-                id="search-bar"
+                id="search-cleanups"
                 type="text"
                 placeholder="Search by location..."
                 value={searchTerm}

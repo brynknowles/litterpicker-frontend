@@ -1,25 +1,14 @@
+
+// import React, { useState, useEffect } from 'react'
 import ProfileList from './ProfileList'
 import CleanupList from "./CleanupList"
 
-function Explore() {
-    
-    function handleCreateUser(newUser) {
-        console.log(newUser)
-        // const newUserArray = [newUser, ...users];
-        // setUsers(newUserArray)
-    }
-
-        // adds new cleanup to list of cleanups
-    function handleCreateCleanup(newCleanup) {
-        console.log(newCleanup)
-        // const newCleanupArray = [newCleanup, ...cleanups];
-        // setCleanups(newCleanupArray);
-    }
+function Explore({ users, cleanups, searchTerm, setSearchTerm }) {
 
     return (
         <section>
-            <ProfileList onCreateUser={handleCreateUser} />
-            <CleanupList onCreateCleanup={handleCreateCleanup} />
+            <ProfileList users={users} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+            <CleanupList cleanups={cleanups} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         </section>
     )
 }
