@@ -1,29 +1,73 @@
+import { NavLink } from "react-router-dom";
 
-function NavBar({ selectedButton, onNavClick }) {
+function NavBar({ currentUser, setCurrentUser }) {
+    console.log("current user in navbar", currentUser)
 
-    // ROUTES
-    // /home
-    // /cleanups
-    // /profile
-    // /cleanups/add
-    // /cleanup/:id
+    function login() {
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/login`, {
+            method: "POST",
+        })
+            .then((r) => r.json())
+            .then(setCurrentUser);
+    }
+    
+    function logout() {
+        setCurrentUser(null);
+    }
 
     return (
-    <div className="nav">
-        <span onClick={() => onNavClick("Home")} className={selectedButton === "Home" ? "item active" : "item"}>
-            <button className="home">Home</button>
-        </span>
-        <span onClick={() => onNavClick("Explore")} className={selectedButton === "Explore" ? "item active" : "item"}>
-            <button className="explore">Explore</button>
-        </span>
-        <span onClick={() => onNavClick("Profile")} className={selectedButton === "Profile" ? "item active" : "item"}>
-            <button className="profile">Profile</button>
-        </span>
-        <span onClick={() => onNavClick("Create")} className={selectedButton === "Create" ? "item active" : "item"}>
-            <button className="create">Create</button>
-        </span>
-    </div>
+    <nav className="nav">
+        <NavLink exact to="/" className="button">
+            Home
+        </NavLink>
+        <NavLink exact to={"/cleanups"} className="button">
+            Explore
+        </NavLink>
+        <NavLink exact to="/users/:id" className="button">
+            Profile
+        </NavLink>
+        <NavLink exact to="/cleanups/new" className="button">
+            Create
+        </NavLink>
+        {currentUser ? (
+            <button onClick={logout}>Logout</button>
+        ) : (
+            <button onClick={login}>Login</button>
+        )}
+        <NavLink exact to="/users/new" className="button">
+            Signup
+        </NavLink>
+    </nav>
     )
 }
 
 export default NavBar;
+
+// return (
+//         <nav>
+//             <NavLink exact to="/projects" className="button">
+//             All Projects
+//             </NavLink>
+//             <NavLink to="/projects/add" className="button">
+//             Add Project
+//             </NavLink>
+//             {currentUser ? (
+//             <button onClick={logout}>Logout</button>
+//             ) : (
+//             <button onClick={login}>Login</button>
+//             )}
+//             <button onClick={onDarkModeClick}>
+//             {isDarkMode ? (
+//                 <span role="img" label="sun">
+//                 ☀️
+//                 </span>
+//             ) : (
+//                 <span role="img" label="moon">
+//                 🌙
+//                 </span>
+//             )}
+//             </button>
+//         </nav>
+
+// );
+

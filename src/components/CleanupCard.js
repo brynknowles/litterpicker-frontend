@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 
 function CleanupCard({ cleanup }) {
-    const { name, category, image, date, duration, comment, user, location } = cleanup
-    // console.log(user)
+    // console.log("cleanup in CleanupCard:", { cleanup })
+    const { name, location, category, image, date, duration, comment, users } = cleanup
+    // console.log("users in CleanupCard", users)
     const [claps, setClaps] = useState(0)
     // console.log("claps in CleanupCard", claps)
 
@@ -28,7 +29,7 @@ function CleanupCard({ cleanup }) {
                 <p>Comment: {comment}</p>
             </div>
             <div className="profile-button">
-                <button><p>LitterPicker: {user.username}</p></button>
+                <button><p>LitterPicker: {users.map((user) => user.username)}</p></button>
             </div>
         </li>
     )
