@@ -1,9 +1,20 @@
 import React, { useState } from 'react'
 
-function CleanupCard({ cleanup }) {
-    const { name, location, category, image, date, duration, comment, users } = cleanup
+function CleanupCard({ cleanup, onDeleteCleanup }) {
+    const { id, name, location, category, image, date, start_time, end_time, comment, users } = cleanup
     const [claps, setClaps] = useState(0)
-    console.log("users in CleanupCard: ", users)
+    console.log("location in CleanupCard: ", location)
+
+    function changeDate(str) {
+        let updatedDate = new Date(str.split('-'))
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
+        return updatedDate.toLocaleDateString('en-US', options)
+    }
+
+    function changeTime(str) {
+        let updatedTime = new Date(str)
+        updatedTime.toLocaleTimeString('en-US')
+    }
 
     const username = users.map((user) => user.username)
 
@@ -14,6 +25,34 @@ function CleanupCard({ cleanup }) {
         });
     }
 
+    function handleSignupClick() {
+        console.log("signup clicked")
+        // fetch(`http://localhost:3000/user_cleanups/${id}`, {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify({
+        //         user_id: current_user.id,
+        //         cleanup_id: current_cleanup.id
+        //     })
+        // })
+        // .then(r => r.json())
+        // .then(console.log)
+    }
+
+    function handleEditClick() {
+        console.log("edit button clicked!")
+    }
+
+    function handleDeleteClick() {
+        // console.log(id)
+        fetch(`http://localhost:3000/cleanups/${id}`, {
+            method: "DELETE"
+        })
+        onDeleteCleanup(cleanup)
+    }
+
     return (
         <li className="card">
             <div className="image">
@@ -22,15 +61,19 @@ function CleanupCard({ cleanup }) {
             </div>
             <div className="details">
                 <h3>{name}</h3>
-                <p>Location: {location.name}</p>
+                <p>Location: {location}</p>
                 <p>Category: {category}</p>
-                <p>Date: {date}</p>
-                <p>Duration: {duration} hr(s)</p>
+                <p>Date: {changeDate(date)}</p>
+                <p>Start Time: {start_time} hr(s)</p>
+                <p>End Time: {end_time} hr(s)</p>
                 <p>Comment: {comment}</p>
             </div>
             <div className="profile-button">
-                <button onClick={e => console.log("profile name clicked", username)}><p>LitterPicker: {users.map((user) => user.username)}</p></button>
+                <button onClick={e => console.log("profile name clicked", username)}><p>LitterPickers: {users.map((user) => user.username)}</p></button>
             </div>
+            <button onClick={handleSignupClick}>Sign Up To Event</button>
+            <button onClick={handleEditClick}>Edit Event</button>
+            <button onClick={handleDeleteClick}>Cancel Event</button>
         </li>
     )
 }

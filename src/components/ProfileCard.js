@@ -12,31 +12,32 @@ function ProfileCard({ user, onDeleteUser }) {
         setEditClicked(!editClicked)
     }
 
-    function handleEditSubmit(e) {
-        e.preventDefault()
-        // console.log({ editedTitle, editedBody })
-    
-        // fetch(`http://localhost:3000/api/v1/notes/${id}`, {
+    function handleEditSubmit(event) {
+        event.preventDefault()
+        console.log("submitting")
+        // fetch(`http://localhost:3000/users/${id}`, {
         //     method: "PATCH",
         //     headers: {
         //         'Content-Type': 'application/json',
         //         'Accept': 'application/json'
         //     },
         //     body: JSON.stringify({
-        //         title: editedTitle,
-        //         body: editedBody
+        //         avatar: editedAvatar,
+        //         username: editedUsername,
+        //         age: editedAge,
+        //         catchphrase: editedCatchphrase
         //     })
         // })
         //     .then(r => r.json())
         //     .then(console.log)
-        //     // .then(editedNote => {
-        //     //   onAddNote(editedNote)
+        //     // .then(data => {
+        //     //   onEditUser(data)
         //     // })
     }
 
 
     function handleDeleteClick() {
-        // console.log(id)
+        // console.log("delete clicked")
         fetch(`http://localhost:3000/users/${id}`, {
             method: "DELETE"
         })

@@ -43,7 +43,7 @@ function SignupForm({ onCreateUser }) {
             <h1>Signup Form</h1>
             <form className="form" onSubmit={handleSubmit}>
                 <label htmlFor="avatar">Avatar (Image URL):</label>
-                <input type="image" aria-label="user avatar" id="avatar" name="avatar" value={formData.avatar} onChange={handleChange}></input>
+                <input type="text" aria-label="user avatar" id="avatar" name="avatar" value={formData.avatar} onChange={handleChange}></input>
                 <label htmlFor="username">Username:</label>
                 <input type="text" id="username" name="username" value={formData.username} onChange={handleChange}></input>
                 <label htmlFor="age">Age:</label>

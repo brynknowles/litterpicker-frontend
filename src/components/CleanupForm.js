@@ -4,22 +4,37 @@ function CleanupForm({ users, onCreateCleanup }) {
     // console.log("users in CleanupForm: ", users)
     // const { username } = users
 
-    const optionItems = users.map(user => {
-        return <option key={user.id} value={user.username}>{user.username}</option>
-    })
+    // const optionItems = users.map(user => {
+    //     return <option key={user.id} value={user.username}>{user.username}</option>
+    // })
 
     const [formData, setFormData] = useState({
         name: "",
         location: "",
-        category: "",
+        category: "Park",
         image: "",
-        date: Date.now(),
-        duration: 0,
-        comment: "",
-        username: ""
+        date: "",
+        start_time: "",
+        end_time: "",
+        comment: ""
     });
 
-    console.log(formData.username)
+    function handleChange(event) {
+        // console.log("event.target.id", event.target.id)
+        // console.log("event.target.value", event.target.value)
+        const key = event.target.name;
+        let value = event.target.value;
+        setFormData({
+            ...formData,
+            [key]: value
+            // [key]: value
+        });
+
+        // console.log( "key and value", { key, value })
+        // console.log("formData in handleChange", formData)
+    }
+
+    console.log("formData before submit", formData)
     // console.log("form data ", formData)
 
     function handleSubmit(event) {
@@ -34,22 +49,24 @@ function CleanupForm({ users, onCreateCleanup }) {
         })
             .then((r) => r.json())
             .then((newCleanup) => {
+                console.log("newCleanup after submit", newCleanup)
                 onCreateCleanup(newCleanup);
             });
+        console.log("formData.category on submit", formData.category)
+        setFormData({
+            name: "",
+            location: "",
+            category: "",
+            image: "",
+            date: "",
+            start_time: "",
+            end_time: "",
+            comment: ""
+        })
+
     }
 
-    function handleChange(event) {
-        // console.log("event.target.id", event.target.id)
-        // console.log("event.target.value", event.target.value)
-        const key = event.target.id;
-        let value = event.target.value;
-        setFormData({
-            ...formData,
-            [key]: value
-        });
-        // console.log( "key and value", { key, value })
-        // console.log("formData in handleChange", formData)
-    }
+    console.log("formData before submit", formData)
 
     // console.log("formData in CleanupForm: ", formData)
 
@@ -77,16 +94,12 @@ function CleanupForm({ users, onCreateCleanup }) {
                 <input type="url" id="image" name="image" value={formData.image} onChange={handleChange}/>
                 <label htmlFor="date">Date:</label>
                 <input type="date"  id="date" name="date" value={formData.date} onChange={handleChange}/>
-                <label htmlFor="duration">Duration in Hours:</label>
-                <input type="number"  id="duration" name="duration" value={formData.duration} onChange={handleChange}/>
+                <label htmlFor="start_time">Start Time:</label>
+                <input type="time"  id="start_time" name="start_time" value={formData.start_time} onChange={handleChange}/>
+                <label htmlFor="end_time">End Time:</label>
+                <input type="time"  id="end_time" name="end_time" value={formData.end_time} onChange={handleChange}/>
                 <label htmlFor="comment">Comment:</label>
                 <input type="text"  id="comment" name="comment" value={formData.comment} onChange={handleChange}/>
-                <label htmlFor="username">Username:</label>
-                <select id="username" name="username" value={formData.username} onChange={handleChange}>
-                    <optgroup label="Username">
-                        {optionItems}
-                    </optgroup>
-                </select>
                 <button type="submit">Create Cleanup Event</button>
             </form>
         </section>

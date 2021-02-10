@@ -9,7 +9,7 @@ import Header from './components/Header'
 import NavBar from './components/NavBar'
 import Home from './components/Home'
 import Explore from './components/Explore'
-import Profile from './components/Profile'
+// import Profile from './components/Profile'
 import CleanupForm from './components/CleanupForm'
 import SignupForm from './components/SignupForm'
 import Footer from './components/Footer'
@@ -21,7 +21,22 @@ function App() {
   // const [currentUser, setCurrentUser] = useState(null);
   const [users, setUsers] = useState([])
   const [cleanups, setCleanups] = useState([])
-  const [searchTerm, setSearchTerm] = useState("")
+  const [userSearchTerm, setUserSearchTerm] = useState("")
+  const [cleanupSearchTerm, setCleanupSearchTerm] = useState("")
+
+  const [currentUser, setCurrentUser] = useState({
+    avatar: "https://www.greatoutdoorshop.com/wp-content/uploads/2019/08/WOODSY-OWL-STICKER-1000.jpg",
+    username: "Woodsy Owl",
+    age: 50,
+    catchphrase: "Give a hoot, don't pollute!",
+    park_badge: 1,
+    playground_badge: 1,
+    shoreline_badge: 1,
+    trail_badge: 0,
+    earth_steward_badge: 1
+  })
+
+  
 
   // console.log("users, cleanups and searchTerm in App", { users, cleanups, searchTerm })
 
@@ -49,22 +64,31 @@ function App() {
   //     return user.name.toLowerCase().includes(searchTerm.toLowerCase())
   // })
 
-  // const filteredCleanups = cleanups.filter((cleanup) => {
-  //   // console.log("cleanup in search term filter: ", cleanup)
-  //   return cleanup.name.toLowerCase().includes(searchTerm.toLowerCase())
-  // })
-
-  // function handleCreateUser(newUser) {
-  //   // console.log(newUser)
-  //   // const newUserArray = [newUser, ...users];
-  //   // setUsers(newUserArray)
-  // }
+  const filteredCleanups = cleanups.filter((cleanup) => {
+    // console.log("cleanup in search term filter: ", cleanup)
+    return cleanup.location.toLowerCase().includes(cleanupSearchTerm.toLowerCase())
+  })
 
     // adds new cleanup to list of cleanups
   function handleCreateCleanup(newCleanup) {
       // console.log(newCleanup)
-      const newCleanupArray = [newCleanup, ...cleanups];
-      setCleanups(newCleanupArray);
+      setCleanups([newCleanup, ...cleanups]);
+      // const newCleanupArray = [newCleanup, ...cleanups];
+      // setCleanups(newCleanupArray);
+
+  }
+
+  function handleDeleteCleanup(cleanupToDelete) {
+    // console.log(cleanupToDelete)
+    const updatedCleanups = cleanups.filter((cleanup) => cleanup.id !== cleanupToDelete)
+    setUsers(updatedCleanups)
+  }
+
+  function handleCreateUser(newUser) {
+    // console.log(newUser)
+    setUsers([newUser, ...users]);
+    // const newUserArray = [newUser, ...users];
+    // setUsers(newUserArray)
   }
 
   // function handleDeleteUser(id) {
@@ -84,16 +108,16 @@ function App() {
             <Home />
           </Route>
           <Route exact path="/cleanups">
-            <Explore users={users} setUsers={setUsers} cleanups={cleanups} setCleanups={setCleanups} searchTerm={searchTerm} setSearchTerm={setSearchTerm} /> 
+            <Explore currentUser={currentUser} users={users} setUsers={setUsers} cleanups={filteredCleanups} setCleanups={setCleanups} userSearchTerm={userSearchTerm} setUserSearchTerm={setUserSearchTerm} cleanupSearchTerm={cleanupSearchTerm} setCleanupSearchTerm={setCleanupSearchTerm} onDeleteCleanup={handleDeleteCleanup} /> 
           </Route>
-          <Route exact path="/users/:id">
+          {/* <Route exact path="/users/:id">
             <Profile users={users} />
-          </Route>        
+          </Route>         */}
           <Route exact path="/cleanups/new">
             <CleanupForm users={users} onCreateCleanup={handleCreateCleanup}/>
           </Route>
-          <Route exact path="/users/new">
-            <SignupForm />
+          <Route exact path="/users/signup">
+            <SignupForm onCreateUser={handleCreateUser} />
           </Route>
           <Route path="*">
             <Redirect to="/" />
