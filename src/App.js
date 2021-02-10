@@ -41,8 +41,8 @@ function App() {
     .then(data => setCleanups(data))
   }, [])
 
-  console.log("users in App", users)
-  console.log("cleanups in App", cleanups)
+  // console.log("users in App", users)
+  // console.log("cleanups in App", cleanups)
 
   // const filteredUsers = users.filter((user) => {
   //     // console.log("cleanup in search term filter: ", cleanup)
@@ -90,7 +90,7 @@ function App() {
             <Profile users={users} />
           </Route>        
           <Route exact path="/cleanups/new">
-            <CleanupForm onCreateCleanup={handleCreateCleanup}/>
+            <CleanupForm users={users} onCreateCleanup={handleCreateCleanup}/>
           </Route>
           <Route exact path="/users/new">
             <SignupForm />

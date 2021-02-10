@@ -3,6 +3,9 @@ import React, { useState } from 'react'
 function CleanupCard({ cleanup }) {
     const { name, location, category, image, date, duration, comment, users } = cleanup
     const [claps, setClaps] = useState(0)
+    console.log("users in CleanupCard: ", users)
+
+    const username = users.map((user) => user.username)
 
     function handleClapsClick() {
         console.log("clicked")
@@ -26,7 +29,7 @@ function CleanupCard({ cleanup }) {
                 <p>Comment: {comment}</p>
             </div>
             <div className="profile-button">
-                <button><p>LitterPicker: {users.map((user) => user.username)}</p></button>
+                <button onClick={e => console.log("profile name clicked", username)}><p>LitterPicker: {users.map((user) => user.username)}</p></button>
             </div>
         </li>
     )

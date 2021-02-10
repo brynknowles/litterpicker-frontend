@@ -1,6 +1,12 @@
 import React, { useState } from 'react'
 
 function CleanupForm({ users, onCreateCleanup }) {
+    // console.log("users in CleanupForm: ", users)
+    // const { username } = users
+
+    const optionItems = users.map(user => {
+        return <option key={user.id} value={user.username}>{user.username}</option>
+    })
 
     const [formData, setFormData] = useState({
         name: "",
@@ -13,6 +19,7 @@ function CleanupForm({ users, onCreateCleanup }) {
         username: ""
     });
 
+    console.log(formData.username)
     // console.log("form data ", formData)
 
     function handleSubmit(event) {
@@ -23,7 +30,7 @@ function CleanupForm({ users, onCreateCleanup }) {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(formData),
+            body: JSON.stringify(formData)
         })
             .then((r) => r.json())
             .then((newCleanup) => {
@@ -32,16 +39,19 @@ function CleanupForm({ users, onCreateCleanup }) {
     }
 
     function handleChange(event) {
-        // console.log(event.target.id)
-        // console.log(event.target.value)
+        // console.log("event.target.id", event.target.id)
+        // console.log("event.target.value", event.target.value)
         const key = event.target.id;
         let value = event.target.value;
         setFormData({
             ...formData,
-            [key]: value,
+            [key]: value
         });
+        // console.log( "key and value", { key, value })
+        // console.log("formData in handleChange", formData)
     }
 
+    // console.log("formData in CleanupForm: ", formData)
 
     return (
         <section>
@@ -72,7 +82,11 @@ function CleanupForm({ users, onCreateCleanup }) {
                 <label htmlFor="comment">Comment:</label>
                 <input type="text"  id="comment" name="comment" value={formData.comment} onChange={handleChange}/>
                 <label htmlFor="username">Username:</label>
-                <input type="text"  id="username" name="username" value={formData.username} onChange={handleChange}/>
+                <select id="username" name="username" value={formData.username} onChange={handleChange}>
+                    <optgroup label="Username">
+                        {optionItems}
+                    </optgroup>
+                </select>
                 <button type="submit">Create Cleanup Event</button>
             </form>
         </section>
