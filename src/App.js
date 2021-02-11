@@ -36,8 +36,6 @@ function App() {
     earth_steward_badge: 1
   })
 
-  
-
   // console.log("users, cleanups and searchTerm in App", { users, cleanups, searchTerm })
 
   useEffect(() => {
@@ -78,6 +76,10 @@ function App() {
 
   }
 
+  function handleUpdateCheer(updatedCleanup) {
+    console.log("updated cleanup in App: ", updatedCleanup)
+  }
+
   function handleDeleteCleanup(cleanupToDelete) {
     // console.log(cleanupToDelete)
     const updatedCleanups = cleanups.filter((cleanup) => cleanup.id !== cleanupToDelete)
@@ -108,7 +110,7 @@ function App() {
             <Home />
           </Route>
           <Route exact path="/cleanups">
-            <Explore currentUser={currentUser} users={users} setUsers={setUsers} cleanups={filteredCleanups} setCleanups={setCleanups} userSearchTerm={userSearchTerm} setUserSearchTerm={setUserSearchTerm} cleanupSearchTerm={cleanupSearchTerm} setCleanupSearchTerm={setCleanupSearchTerm} onDeleteCleanup={handleDeleteCleanup} /> 
+            <Explore currentUser={currentUser} users={users} setUsers={setUsers} cleanups={filteredCleanups} setCleanups={setCleanups} userSearchTerm={userSearchTerm} setUserSearchTerm={setUserSearchTerm} cleanupSearchTerm={cleanupSearchTerm} setCleanupSearchTerm={setCleanupSearchTerm} onUpdateCheer={handleUpdateCheer} onDeleteCleanup={handleDeleteCleanup} /> 
           </Route>
           {/* <Route exact path="/users/:id">
             <Profile users={users} />

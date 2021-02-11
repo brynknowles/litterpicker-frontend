@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function CleanupForm({ users, onCreateCleanup }) {
+function CleanupForm({ onCreateCleanup }) {
     // console.log("users in CleanupForm: ", users)
     // const { username } = users
 
@@ -27,19 +27,19 @@ function CleanupForm({ users, onCreateCleanup }) {
         setFormData({
             ...formData,
             [key]: value
-            // [key]: value
         });
 
         // console.log( "key and value", { key, value })
         // console.log("formData in handleChange", formData)
     }
 
-    console.log("formData before submit", formData)
+    // console.log("formData before submit", formData)
     // console.log("form data ", formData)
 
     function handleSubmit(event) {
         event.preventDefault()
         // console.log("submitting")
+        
         fetch("http://localhost:3000/cleanups", {
             method: "POST",
             headers: {
