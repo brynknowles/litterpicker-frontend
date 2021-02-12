@@ -56,26 +56,17 @@ function App() {
   // console.log("users in App", users)
   // console.log("cleanups in App", cleanups)
 
-    // DONE - Searches cleanups
-  const filteredCleanups = cleanups.filter((cleanup) => {
-    // console.log("cleanup in search term filter: ", cleanup)
-    return cleanup.location.toLowerCase().includes(cleanupSearchTerm.toLowerCase())
-  })
+  //        ********** CLEANUP **********
 
-    // DONE
+    // DONE - Create Cleanup
   function handleCreateCleanup(newCleanup) {
       // console.log(newCleanup)
       setCleanups([newCleanup, ...cleanups]);
   }
 
-    // WORK ON THIS - only lets you click multiple times after refresh(could the cheer +1 need to be in a callback function?) if clicked twice, cheers are set to 0??? WHY?
+    // DONE - Update Cleanup cheer
   function handleUpdateCheer(updatedCleanup) {
     // console.log("updated cleanup in App: ", updatedCleanup)
-    // let newCleanupArray = [...cleanups]
-    // let cleanupIndex = newCleanupArray.findIndex((cleanupObj) => cleanupObj.id === updatedCleanup.id)
-    // newCleanupArray[cleanupIndex] = updatedCleanup
-    // return newCleanupArray
-    // setCleanups(newCleanupArray)
 
     const updatedCleanups = cleanups.map((cleanup) => {
         if (cleanup.id === updatedCleanup.id) {
@@ -88,25 +79,47 @@ function App() {
     setCleanups(updatedCleanups)
   }
 
-    // DONE
+   // WORK ON THIS - Update Cleanup time and date
+  function handleUpdateCleanup(updatedCleanup) {
+    console.log("updatedCleanup in App: ", updatedCleanup)
+
+    // const updatedCleanupArray = cleanups.map((cleanup) => {
+    //   if (cleanup.id === updatedCleanup.id) {
+    //     return updatedCleanup
+    //   } else {
+    //     return cleanup
+    //   }
+    // })
+    // setCleanups(updatedCleanupArray)
+  }
+
+    // DONE - Delete Cleanup
   function handleDeleteCleanup(cleanupToDelete) {
     // console.log(cleanupToDelete)
     const updatedCleanups = cleanups.filter((cleanup) => cleanup.id !== cleanupToDelete)
     setUsers(updatedCleanups)
   }
 
-    // DONE
+  //        ********** USER **********
+
+    // DONE - Create User
   function handleCreateUser(newUser) {
     // console.log(newUser)
     setUsers([newUser, ...users]);
   }
 
-    // WORK ON THIS
+    // DONE - Delete User
   function handleDeleteUser(userToDelete) {
     console.log(userToDelete)
     const updatedUsers = users.filter((user) => user.id !== userToDelete)
     setUsers(updatedUsers)
   }
+
+    // DONE - Searches cleanups
+  const filteredCleanups = cleanups.filter((cleanup) => {
+    // console.log("cleanup in search term filter: ", cleanup)
+    return cleanup.location.toLowerCase().includes(cleanupSearchTerm.toLowerCase())
+  })
 
   return (
       <div className="App">
@@ -118,7 +131,7 @@ function App() {
             <Home />
           </Route>
           <Route exact path="/cleanups">
-            <Explore currentUser={currentUser} users={users} setUsers={setUsers} onDeleteUser={handleDeleteUser} cleanups={filteredCleanups} setCleanups={setCleanups} cleanupSearchTerm={cleanupSearchTerm} setCleanupSearchTerm={setCleanupSearchTerm} onUpdateCheer={handleUpdateCheer} onDeleteCleanup={handleDeleteCleanup} /> 
+            <Explore currentUser={currentUser} users={users} setUsers={setUsers} onDeleteUser={handleDeleteUser} cleanups={filteredCleanups} setCleanups={setCleanups} cleanupSearchTerm={cleanupSearchTerm} setCleanupSearchTerm={setCleanupSearchTerm} onUpdateCheer={handleUpdateCheer} onUpdateCleanup={handleUpdateCleanup} onDeleteCleanup={handleDeleteCleanup} /> 
           </Route>
           {/* <Route exact path="/users/:id">
             <ProfileDetail users={users} />

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 function ProfileCard({ user, onDeleteUser }) {
     const { id, avatar, username, age, catchphrase, park_badge, playground_badge, shoreline_badge, trail_badge, earth_steward_badge } = user
+
         // edit profile state and setState
     const [showEditForm, setShowEditForm] = useState(false)
     const [editedAvatar, setEditedAvatar] = useState(avatar)
@@ -9,7 +10,7 @@ function ProfileCard({ user, onDeleteUser }) {
     const [editedAge, setEditedAge] = useState(age)
     const [editedCatchphrase, setEditedCatchphrase] = useState(catchphrase)
 
-    function handleEditClick() {
+    function toggleEditForm() {
         setShowEditForm(!showEditForm)
     }
 
@@ -20,6 +21,7 @@ function ProfileCard({ user, onDeleteUser }) {
     function handleEditSubmit(event) {
         event.preventDefault()
         console.log("submitting")
+        console.log({ editedAvatar, editedUsername, editedAge, editedCatchphrase })
         // fetch(`http://localhost:3000/users/${id}`, {
         //     method: "PATCH",
         //     headers: {
@@ -39,29 +41,6 @@ function ProfileCard({ user, onDeleteUser }) {
         //     //   onEditUser(data)
         //     // })
     }
-
-    // function handleEditSubmit(e) {
-    //     e.preventDefault()
-    //     console.log({ editedTitle, editedBody })
-    
-    //     fetch(`http://localhost:3000/api/v1/notes/${id}`, {
-    //       method: "PATCH",
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //         'Accept': 'application/json'
-    //       },
-    //       body: JSON.stringify({
-    //         title: editedTitle,
-    //         body: editedBody
-    //       })
-    //     })
-    //       .then(r => r.json())
-    //       .then(console.log)
-    //       // .then(editedNote => {
-    //       //   onAddNote(editedNote)
-    //       // })
-    //   }
-
 
     function handleDeleteClick() {
         // console.log("delete clicked")
@@ -89,7 +68,7 @@ function ProfileCard({ user, onDeleteUser }) {
                     <li>Trail: {trail_badge}</li>
                     <li>Earth Steward: {earth_steward_badge}</li>
                 </ul>
-                <button className="button" onClick={handleEditClick}>Edit Profile</button>
+                <button className="button" onClick={toggleEditForm}>Edit Profile</button>
                 {showEditForm ? (
                     <form className="form" onSubmit={handleEditSubmit}>
                         <label htmlFor="avatar">Avatar (Image URL):</label>
