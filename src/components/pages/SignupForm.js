@@ -55,10 +55,10 @@ function SignupForm({ onCreateUser }) {
                 <input type="text" aria-label="user avatar" id="avatar" name="avatar" value={formData.avatar} onChange={handleChange}></input>
                 <label htmlFor="username">Username:</label>
                 <input type="text" id="username" name="username" value={formData.username} onChange={handleChange}></input>
-                <label for="pwd">Password:</label>
-                <input type="password" id="pwd" name="pwd" value={formData.password} onChange={handleChange}></input>
+                <label htmlFor="password">Password:</label>
+                <input type="password" id="password" name="password" value={formData.password} onChange={handleChange}></input>
                 <label htmlFor="age">Age:</label>
-                <input type="number" id="age" name="age" value={formData.age} onChange={handleChange}></input>
+                <input type="text" id="age" name="age" value={formData.age} onChange={handleChange}></input>
                 <label htmlFor="catchphrase">Catchphrase:</label>
                 <input type="text" id="catchphrase" name="catchphrase" value={formData.catchphrase} onChange={handleChange}></input>
                 <button type="submit">Sign Up</button>

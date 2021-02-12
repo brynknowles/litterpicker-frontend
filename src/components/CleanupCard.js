@@ -1,10 +1,23 @@
 import React, { useState } from 'react'
 
 function CleanupCard({ cleanup, onUpdateCheer, onDeleteCleanup }) {
+    // console.log(cleanup)
     const { id, name, location, category, image, date, start_time, end_time, comment, cheer, users } = cleanup
-    console.log("cheer in CleanupCard: ", cheer)
-    const [newCheer, setNewCheer] = useState(0)
+    // console.log("cheer in CleanupCard: ", cheer)
+    const [newCheer, setNewCheer] = useState(cheer)
     // console.log("location in CleanupCard: ", location)
+    // console.log(cheer, newCheer)
+
+    // const eventStartTime = new Date().toUTCString(start_time)
+
+    // const eventEndTime = new Date().toUTCString(end_time)
+    
+    // const eventStartTime = start_time.strftime("at %I:%M%p")
+    
+    // function changeTime(str) {
+    //     let updatedTime = new Date(str)
+    //     updatedTime.toTimeString('en-US')
+    // }
 
     function changeDate(str) {
         let updatedDate = new Date(str.split('-'))
@@ -12,17 +25,12 @@ function CleanupCard({ cleanup, onUpdateCheer, onDeleteCleanup }) {
         return updatedDate.toLocaleDateString('en-US', options)
     }
 
-    function changeTime(str) {
-        let updatedTime = new Date(str)
-        updatedTime.toTimeString('en-US')
-    }
-
     const usernames = users.map((user) => user.username)
 
     function handleCheersClick(event) {
         event.preventDefault()
-        console.log("clicked")
-        const updateObj = {
+        // console.log("clicked")
+        const updatedObj = {
             cheer: newCheer + 1
         }
 
@@ -31,14 +39,17 @@ function CleanupCard({ cleanup, onUpdateCheer, onDeleteCleanup }) {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(updateObj)
+            body: JSON.stringify(updatedObj)
         })
         .then(r => r.json())
-        // .then(console.log("cheering"))
-        .then(updatedCheer => {
-        onUpdateCheer(updatedCheer)
-        setNewCheer(updatedCheer)
+        // .then(console.log)
+        .then(updatedCleanup => {
+            console.log("updatedCleanup in CleanupCard: ", updatedCleanup)
+            // setNewCheer(updatedCleanup)
+            onUpdateCheer(updatedCleanup)
         })
+
+        setNewCheer(updatedObj)
         // .then(onUpdateCheers)
 
         // old way w/ no fetch, just onClick
@@ -72,7 +83,7 @@ function CleanupCard({ cleanup, onUpdateCheer, onDeleteCleanup }) {
         fetch(`http://localhost:3000/cleanups/${id}`, {
             method: "DELETE"
         })
-        onDeleteCleanup(cleanup)
+        onDeleteCleanup(id)
     }
 
     return (
@@ -86,16 +97,14 @@ function CleanupCard({ cleanup, onUpdateCheer, onDeleteCleanup }) {
                 <p>Location: {location}</p>
                 <p>Category: {category}</p>
                 <p>Date: {changeDate(date)}</p>
-                <p>Start Time: {start_time} hr(s)</p>
-                <p>End Time: {end_time} hr(s)</p>
+                <p>Start Time: {start_time}</p>
+                <p>End Time: {end_time}</p>
                 <p>Comment: {comment}</p>
-            </div>
-            <div className="profile-button">
-                <button><p>LitterPickers: {usernames}</p></button>
+                <p>LitterPickers: {usernames}</p>
             </div>
             <button onClick={handleSignupClick}>Sign Up To Event</button>
-            <button onClick={handleEditClick}>Edit Event</button>
-            <button onClick={handleDeleteClick}>Cancel Event</button>
+            {/* <button onClick={handleEditClick}>Edit Event</button> */}
+            <button className="button" onClick={handleDeleteClick}>Cancel Event</button>
         </li>
     )
 }

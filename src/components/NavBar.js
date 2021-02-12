@@ -57,15 +57,6 @@ export default NavBar;
 //             <button onClick={login}>Login</button>
 //             )}
 //             <button onClick={onDarkModeClick}>
-//             {isDarkMode ? (
-//                 <span role="img" label="sun">
-//                 ☀️
-//                 </span>
-//             ) : (
-//                 <span role="img" label="moon">
-//                 🌙
-//                 </span>
-//             )}
 //             </button>
 //         </nav>
 

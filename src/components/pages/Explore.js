@@ -1,13 +1,13 @@
 
 // import React, { useState, useEffect } from 'react'
-import ProfileList from './ProfileList'
-import CleanupList from "./CleanupList"
+import ProfileList from '../ProfileList'
+import CleanupList from "../CleanupList"
 
-function Explore({ users, cleanups, userSearchTerm, setUserSearchTerm, cleanupSearchTerm, setCleanupSearchTerm, onUpdateCheer, onDeleteCleanup }) {
+function Explore({ users, cleanups, onDeleteUser, cleanupSearchTerm, setCleanupSearchTerm, onUpdateCheer, onDeleteCleanup }) {
 
     return (
         <section>
-            <ProfileList users={users} userSearchTerm={userSearchTerm} setSearchTerm={setUserSearchTerm} />
+            <ProfileList users={users} onDeleteUser={onDeleteUser} />
             <CleanupList cleanups={cleanups} cleanupSearchTerm={cleanupSearchTerm} setCleanupSearchTerm={setCleanupSearchTerm} onUpdateCheer={onUpdateCheer} onDeleteCleanup={onDeleteCleanup} />
         </section>
     )

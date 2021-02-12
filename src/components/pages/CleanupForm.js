@@ -70,6 +70,8 @@ function CleanupForm({ onCreateCleanup }) {
 
     // console.log("formData in CleanupForm: ", formData)
 
+    // minute_step: 15, ampm: true
+
     return (
         <section>
             <div>
@@ -107,3 +109,4 @@ function CleanupForm({ onCreateCleanup }) {
 }
 
 export default CleanupForm;
+

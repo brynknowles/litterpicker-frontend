@@ -2,14 +2,19 @@ import React, { useState } from 'react'
 
 function ProfileCard({ user, onDeleteUser }) {
     const { id, avatar, username, age, catchphrase, park_badge, playground_badge, shoreline_badge, trail_badge, earth_steward_badge } = user
-    const [editClicked, setEditClicked] = useState(false)
+        // edit profile state and setState
+    const [showEditForm, setShowEditForm] = useState(false)
     const [editedAvatar, setEditedAvatar] = useState(avatar)
     const [editedUsername, setEditedUsername] = useState(username)
     const [editedAge, setEditedAge] = useState(age)
     const [editedCatchphrase, setEditedCatchphrase] = useState(catchphrase)
 
     function handleEditClick() {
-        setEditClicked(!editClicked)
+        setShowEditForm(!showEditForm)
+    }
+
+    function handleEditChange(){
+        console.log("submitting changes")
     }
 
     function handleEditSubmit(event) {
@@ -34,6 +39,28 @@ function ProfileCard({ user, onDeleteUser }) {
         //     //   onEditUser(data)
         //     // })
     }
+
+    // function handleEditSubmit(e) {
+    //     e.preventDefault()
+    //     console.log({ editedTitle, editedBody })
+    
+    //     fetch(`http://localhost:3000/api/v1/notes/${id}`, {
+    //       method: "PATCH",
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //         'Accept': 'application/json'
+    //       },
+    //       body: JSON.stringify({
+    //         title: editedTitle,
+    //         body: editedBody
+    //       })
+    //     })
+    //       .then(r => r.json())
+    //       .then(console.log)
+    //       // .then(editedNote => {
+    //       //   onAddNote(editedNote)
+    //       // })
+    //   }
 
 
     function handleDeleteClick() {
@@ -63,13 +90,22 @@ function ProfileCard({ user, onDeleteUser }) {
                     <li>Earth Steward: {earth_steward_badge}</li>
                 </ul>
                 <button className="button" onClick={handleEditClick}>Edit Profile</button>
-                {editClicked ? (
-                    <form className="note-editor" onSubmit={handleEditSubmit}>
-                        {/* <input type="text" name="avatar" value={noteTitle} onChange={(e) => setNoteTitle(e.target.value)}/> */}
-                        {/* <textarea name="body" value={noteBody} onChange={(e) => setNoteBody(e.target.value)}/> */}
-                        <input className="button" type="submit" value="Save" />
+                {showEditForm ? (
+                    <form className="form" onSubmit={handleEditSubmit}>
+                        <label htmlFor="avatar">Avatar (Image URL):</label>
+                        <input type="text" aria-label="user avatar" id="avatar" name="avatar" value={editedAvatar} onChange={handleEditChange}></input>
+                        <label htmlFor="username">Username:</label>
+                        <input type="text" id="username" name="username" value={editedUsername} onChange={handleEditChange}></input>
+                        <label htmlFor="age">Age:</label>
+                        <input type="number" id="age" name="age" value={editedAge} onChange={handleEditChange}></input>
+                        <label htmlFor="catchphrase">Catchphrase:</label>
+                        <input type="text" id="catchphrase" name="catchphrase" value={editedCatchphrase} onChange={handleEditChange}></input>
+                        <button type="submit">Save Changes</button>
+                        {/* <button type="cancel">Cancel Edit</button> */}
                     </form>
-                ) : ( null )
+                ) : ( 
+                    null 
+                )
             }
                 <button className="button" onClick={handleDeleteClick}>Delete Profile</button>
             </div>
