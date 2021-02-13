@@ -78,10 +78,10 @@ function ProfileCard({ user, onDeleteUser }) {
                         <button type="submit">Save Changes</button>
                         {/* <button type="cancel">Cancel Edit</button> */}
                     </form>
-                ) : ( 
-                    null 
-                )
-            }
+                    ) : ( 
+                        null 
+                    )
+                }
                 <button className="button" onClick={handleDeleteClick}>Delete Profile</button>
             </div>
         </li>

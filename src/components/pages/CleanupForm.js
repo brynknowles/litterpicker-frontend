@@ -1,28 +1,11 @@
 import React, { useState } from 'react'
 // import DateTimePicker from 'react-datetime-picker'
-import TimePicker from 'react-time-picker';
+// import TimePicker from 'react-time-picker';
 
 
 function CleanupForm({ onCreateCleanup }) {
     // console.log("users in CleanupForm: ", users)
     // const { username } = users
-
-    // const optionItems = users.map(user => {
-    //     return <option key={user.id} value={user.username}>{user.username}</option>
-    // })
-
-// const [value, onChange] = useState('10:00');
-
-// function MyApp() {
-//   return (
-//     <div>
-//       <TimePicker
-//         onChange={onChange}
-//         value={value}
-//       />
-//     </div>
-//   );
-// }
 
     const [formData, setFormData] = useState({
         name: "",
@@ -111,10 +94,6 @@ function CleanupForm({ onCreateCleanup }) {
                 <label htmlFor="date">Date:</label>
                 <input type="date" id="date" name="date" value={formData.date} onChange={handleChange}/>
                 <label htmlFor="start_time">Start Time:</label>
-                    {/* <TimePicker
-                        onChange={handleChange}
-                        value={formData.start_time}
-                    /> */}
                 <input type="time" id="start_time" name="start_time" value={formData.start_time} onChange={handleChange}/>
                 <label htmlFor="end_time">End Time:</label>
                 <input type="time" id="end_time" name="end_time" value={formData.end_time} onChange={handleChange}/>

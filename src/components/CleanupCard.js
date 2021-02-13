@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
 import { format } from "date-fns";
+import EditCleanupForm from './EditCleanupForm';
 
-function CleanupCard({ cleanup, onUpdateCheer, onUpdateCleanup, onDeleteCleanup }) {
+function CleanupCard({ cleanup, onUpdateCheer, onUpdateCleanup, onAttendeeSignup, onDeleteCleanup }) {
     const { id, name, location, category, image, date, start_time, end_time, comment, cheer, users } = cleanup
     const [newCheer, setNewCheer] = useState(cheer)
-    const [newDate, setNewDate] = useState(date)
-    const [newStartTime, setNewStartTime] = useState(start_time)
-    const [newEndTime, setNewEndTime] = useState(end_time)
+    // const [newDate, setNewDate] = useState(date)
+    // const [newStartTime, setNewStartTime] = useState(start_time)
+    // const [newEndTime, setNewEndTime] = useState(end_time)
     const [showEditForm, setShowEditForm] = useState(false)
 
-    const usernames = users.map((user) => <li>- {user.username}</li>)
+    const attendees = users.map((user) => <li>- {user.username}</li>)
 
     function changeDate(str) {
         let updatedDate = new Date(str.split('-'))
@@ -23,8 +24,8 @@ function CleanupCard({ cleanup, onUpdateCheer, onUpdateCleanup, onDeleteCleanup 
     let endTime = new Date(end_time);
     endTime = new Date(endTime.setHours(endTime.getHours() + 5)); 
 
-    function handleCleanupChange() {
-
+    function toggleEditForm() {
+        setShowEditForm(!showEditForm)
     }
 
     function handleCheersClick(event) {
@@ -50,6 +51,32 @@ function CleanupCard({ cleanup, onUpdateCheer, onUpdateCleanup, onDeleteCleanup 
         setNewCheer(updatedObj.cheer)
     }
 
+    // function handleEditSubmit() {
+    //     // console.log("edit button clicked!")
+    //     console.log("onUpdateCleanup fn in CleanupCard", onUpdateCleanup)
+
+    //     const updatedObj = {
+    //         date: newDate,
+    //         start_time: newStartTime,
+    //         end_time: newEndTime
+    //     }
+    //     fetch(`http://localhost:3000/user_cleanups/$(id)`, {
+    //         method: "PATCH",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //         },
+    //         body: JSON.stringify(updatedObj)
+    //     })
+    //         .then(r => r.json())
+    //         .then(updatedCleanup => {
+    //             console.log("updated date and time in CleanupCard: ", updatedCleanup)
+    //             onUpdateCleanup(updatedCleanup)
+    //         })
+    //     setNewDate(updatedObj.date)
+    //     setNewStartTime(updatedObj.start_time)
+    //     setNewEndTime(updatedObj.end_time)
+    // }
+
     function handleSignupClick() {
         console.log("signup clicked")
         // fetch(`http://localhost:3000/user_cleanups/${id}`, {
@@ -64,24 +91,6 @@ function CleanupCard({ cleanup, onUpdateCheer, onUpdateCleanup, onDeleteCleanup 
         // })
         // .then(r => r.json())
         // .then(console.log)
-    }
-
-    function handleEditClick() {
-        // console.log("edit button clicked!")
-        console.log("onUpdateCleanup fn in CleanupCard", onUpdateCleanup)
-
-        const updatedObj = {
-            date: newDate,
-            start_time: newStartTime,
-            end_time: newEndTime
-        }
-        fetch(`http://localhost:3000/user_cleanups/$(id)`, {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(updatedObj)
-        })
     }
 
     function handleDeleteClick() {
@@ -106,30 +115,34 @@ function CleanupCard({ cleanup, onUpdateCheer, onUpdateCleanup, onDeleteCleanup 
                 <p>Start Time: {format(startTime, "h:mm aa")}</p>
                 <p>End Time: {format(endTime, "h:mm aa")}</p>
                 <p>Comment: {comment}</p>
-                <p>LitterPickers: {usernames}</p>
+                <p>LitterPickers:</p>
+                <ul>
+                    {attendees}
+                </ul>
             </div>
             <button onClick={handleSignupClick}>Sign Up To Event</button>
-            <button onClick={handleEditClick}>Edit Event</button>
+            <button onClick={toggleEditForm}>Edit Event</button>
+            {showEditForm ? (
+                <EditCleanupForm 
+                    cleanup={cleanup} 
+                    onUpdateCleanup={onUpdateCleanup} 
+                />
+                // <form className="form" onSubmit={handleEditSubmit}>
+                //     <label htmlFor="date">Date:</label>
+                //     <input type="date" id="date" name="date" value={newDate} onChange={(e) => setNewDate(e.target.value)}/>
+                //     <label htmlFor="start_time">Start Time:</label>
+                //     <input type="time" id="start_time" name="start_time" value={newStartTime} onChange={(e) => setNewStartTime(e.target.value)}/>
+                //     <label htmlFor="end_time">End Time:</label>
+                //     <input type="time" id="end_time" name="end_time" value={newEndTime} onChange={(e) => setNewEndTime(e.target.value)}/>
+                //     <button type="submit">Save Changes</button>
+                // </form>
+                ) : (
+                    null
+                )
+            }
             <button className="button" onClick={handleDeleteClick}>Cancel Event</button>
         </li>
     )
 }
 
 export default CleanupCard;
-
-
-    // const eventStartTime = new Date().toUTCString(start_time)
-
-    // const eventEndTime = new Date().toUTCString(end_time)
-    
-    // const eventStartTime = start_time.strftime("at %I:%M%p")
-    
-    // function changeTime(str) {
-    //     let updatedTime = new Date(str)
-    //     updatedTime.toTimeString('en-US')
-    // }
-
-            // old way w/ no fetch, just onClick
-        // setClaps((claps) => {
-        //     return claps + 1
-        // });

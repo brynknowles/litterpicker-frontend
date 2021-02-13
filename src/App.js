@@ -67,7 +67,6 @@ function App() {
     // DONE - Update Cleanup cheer
   function handleUpdateCheer(updatedCleanup) {
     // console.log("updated cleanup in App: ", updatedCleanup)
-
     const updatedCleanups = cleanups.map((cleanup) => {
         if (cleanup.id === updatedCleanup.id) {
           return updatedCleanup
@@ -82,15 +81,19 @@ function App() {
    // WORK ON THIS - Update Cleanup time and date
   function handleUpdateCleanup(updatedCleanup) {
     console.log("updatedCleanup in App: ", updatedCleanup)
+    const updatedCleanupArray = cleanups.map((cleanup) => {
+      if (cleanup.id === updatedCleanup.id) {
+        return updatedCleanup
+      } else {
+        return cleanup
+      }
+    })
+    setCleanups(updatedCleanupArray)
+  }
 
-    // const updatedCleanupArray = cleanups.map((cleanup) => {
-    //   if (cleanup.id === updatedCleanup.id) {
-    //     return updatedCleanup
-    //   } else {
-    //     return cleanup
-    //   }
-    // })
-    // setCleanups(updatedCleanupArray)
+    // WORK ON THIS - Sign User up to Cleanup Event
+  function handleAttendeeSignup(attendee) {
+    console.log("attendee in App: ", attendee)
   }
 
     // DONE - Delete Cleanup
@@ -131,7 +134,20 @@ function App() {
             <Home />
           </Route>
           <Route exact path="/cleanups">
-            <Explore currentUser={currentUser} users={users} setUsers={setUsers} onDeleteUser={handleDeleteUser} cleanups={filteredCleanups} setCleanups={setCleanups} cleanupSearchTerm={cleanupSearchTerm} setCleanupSearchTerm={setCleanupSearchTerm} onUpdateCheer={handleUpdateCheer} onUpdateCleanup={handleUpdateCleanup} onDeleteCleanup={handleDeleteCleanup} /> 
+            <Explore 
+              currentUser={currentUser} 
+              users={users} 
+              setUsers={setUsers} 
+              onDeleteUser={handleDeleteUser} 
+              cleanups={filteredCleanups} 
+              setCleanups={setCleanups} 
+              cleanupSearchTerm={cleanupSearchTerm} 
+              setCleanupSearchTerm={setCleanupSearchTerm} 
+              onUpdateCheer={handleUpdateCheer} 
+              onUpdateCleanup={handleUpdateCleanup} 
+              onAttendeeSignup={handleAttendeeSignup} 
+              onDeleteCleanup={handleDeleteCleanup} 
+            /> 
           </Route>
           {/* <Route exact path="/users/:id">
             <ProfileDetail users={users} />
@@ -140,10 +156,15 @@ function App() {
             <CleanupDetail cleanups={filteredCleanups}/>
           </Route> */}
           <Route exact path="/cleanups/new">
-            <CleanupForm users={users} onCreateCleanup={handleCreateCleanup}/>
+            <CleanupForm 
+              users={users} 
+              onCreateCleanup={handleCreateCleanup}
+            />
           </Route>
           <Route exact path="/users/signup">
-            <SignupForm onCreateUser={handleCreateUser} />
+            <SignupForm 
+              onCreateUser={handleCreateUser} 
+            />
           </Route>
           <Route path="*">
             <Redirect to="/" />
