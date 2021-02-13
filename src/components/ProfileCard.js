@@ -1,14 +1,8 @@
 import React, { useState } from 'react'
+import EditProfileForm from './EditProfileForm'
 
-function ProfileCard({ user, onDeleteUser }) {
+function ProfileCard({ user, onUpdateUser, onDeleteUser }) {
     const { id, avatar, username, age, catchphrase, park_badge, playground_badge, shoreline_badge, trail_badge, earth_steward_badge } = user
-
-        // edit profile state and setState
-    const [showEditForm, setShowEditForm] = useState(false)
-    const [editedAvatar, setEditedAvatar] = useState(avatar)
-    const [editedUsername, setEditedUsername] = useState(username)
-    const [editedAge, setEditedAge] = useState(age)
-    const [editedCatchphrase, setEditedCatchphrase] = useState(catchphrase)
 
     function toggleEditForm() {
         setShowEditForm(!showEditForm)
@@ -66,18 +60,10 @@ function ProfileCard({ user, onDeleteUser }) {
                 </ul>
                 <button className="button" onClick={toggleEditForm}>Edit Profile</button>
                 {showEditForm ? (
-                    <form className="form" onSubmit={handleEditSubmit}>
-                        <label htmlFor="avatar">Avatar (Image URL):</label>
-                        <input type="text" aria-label="user avatar" id="avatar" name="avatar" value={editedAvatar} onChange={(e) => setEditedAvatar(e.target.value)}></input>
-                        <label htmlFor="username">Username:</label>
-                        <input type="text" id="username" name="username" value={editedUsername} onChange={(e) => setEditedUsername(e.target.value)}></input>
-                        <label htmlFor="age">Age:</label>
-                        <input type="number" id="age" name="age" value={editedAge} onChange={(e) => setEditedAge(e.target.value)}></input>
-                        <label htmlFor="catchphrase">Catchphrase:</label>
-                        <input type="text" id="catchphrase" name="catchphrase" value={editedCatchphrase} onChange={(e) => setEditedCatchphrase(e.target.value)}></input>
-                        <button type="submit">Save Changes</button>
-                        {/* <button type="cancel">Cancel Edit</button> */}
-                    </form>
+                    <EditProfileForm 
+                        user={user}
+                        onUpdateUser={onUpdateUser}
+                    />
                     ) : ( 
                         null 
                     )

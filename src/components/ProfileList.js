@@ -1,6 +1,6 @@
 import ProfileCard from './ProfileCard'
 
-function ProfileList({ users, onDeleteUser }) {
+function ProfileList({ users, onUpdateUser, onDeleteUser }) {
 
     const displayUsers = users.map((user) => {
         return <ProfileCard key={user.id} user={user} onDeleteUser={onDeleteUser} />

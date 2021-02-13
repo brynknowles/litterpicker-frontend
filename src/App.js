@@ -111,6 +111,18 @@ function App() {
     setUsers([newUser, ...users]);
   }
 
+  function handleUpdateUser(updatedUser) {
+    console.log("updatedUser in App: ", updatedUser)
+    const updatedUserArray = users.map((user) => {
+      if (user.id === updatedUser.id) {
+        return updatedUser
+      } else {
+        return user
+      }
+    })
+    setUsers(updatedUserArray)
+  }
+
     // DONE - Delete User
   function handleDeleteUser(userToDelete) {
     console.log(userToDelete)
@@ -138,6 +150,7 @@ function App() {
               currentUser={currentUser} 
               users={users} 
               setUsers={setUsers} 
+              onUpdateUser={handleUpdateUser}
               onDeleteUser={handleDeleteUser} 
               cleanups={filteredCleanups} 
               setCleanups={setCleanups} 

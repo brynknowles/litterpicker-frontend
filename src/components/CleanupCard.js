@@ -51,32 +51,6 @@ function CleanupCard({ cleanup, onUpdateCheer, onUpdateCleanup, onAttendeeSignup
         setNewCheer(updatedObj.cheer)
     }
 
-    // function handleEditSubmit() {
-    //     // console.log("edit button clicked!")
-    //     console.log("onUpdateCleanup fn in CleanupCard", onUpdateCleanup)
-
-    //     const updatedObj = {
-    //         date: newDate,
-    //         start_time: newStartTime,
-    //         end_time: newEndTime
-    //     }
-    //     fetch(`http://localhost:3000/user_cleanups/$(id)`, {
-    //         method: "PATCH",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //         },
-    //         body: JSON.stringify(updatedObj)
-    //     })
-    //         .then(r => r.json())
-    //         .then(updatedCleanup => {
-    //             console.log("updated date and time in CleanupCard: ", updatedCleanup)
-    //             onUpdateCleanup(updatedCleanup)
-    //         })
-    //     setNewDate(updatedObj.date)
-    //     setNewStartTime(updatedObj.start_time)
-    //     setNewEndTime(updatedObj.end_time)
-    // }
-
     function handleSignupClick() {
         console.log("signup clicked")
         // fetch(`http://localhost:3000/user_cleanups/${id}`, {
@@ -127,15 +101,6 @@ function CleanupCard({ cleanup, onUpdateCheer, onUpdateCleanup, onAttendeeSignup
                     cleanup={cleanup} 
                     onUpdateCleanup={onUpdateCleanup} 
                 />
-                // <form className="form" onSubmit={handleEditSubmit}>
-                //     <label htmlFor="date">Date:</label>
-                //     <input type="date" id="date" name="date" value={newDate} onChange={(e) => setNewDate(e.target.value)}/>
-                //     <label htmlFor="start_time">Start Time:</label>
-                //     <input type="time" id="start_time" name="start_time" value={newStartTime} onChange={(e) => setNewStartTime(e.target.value)}/>
-                //     <label htmlFor="end_time">End Time:</label>
-                //     <input type="time" id="end_time" name="end_time" value={newEndTime} onChange={(e) => setNewEndTime(e.target.value)}/>
-                //     <button type="submit">Save Changes</button>
-                // </form>
                 ) : (
                     null
                 )

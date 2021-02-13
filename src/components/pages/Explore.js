@@ -3,12 +3,13 @@
 import ProfileList from '../ProfileList'
 import CleanupList from "../CleanupList"
 
-function Explore({ users, cleanups, onDeleteUser, cleanupSearchTerm, setCleanupSearchTerm, onUpdateCheer, onUpdateCleanup, onAttendeeSignup, onDeleteCleanup }) {
+function Explore({ users, cleanups, onUpdateUser, onDeleteUser, cleanupSearchTerm, setCleanupSearchTerm, onUpdateCheer, onUpdateCleanup, onAttendeeSignup, onDeleteCleanup }) {
 
     return (
         <section>
             <ProfileList 
                 users={users} 
+                onUpdateUser={onUpdateUser}
                 onDeleteUser={onDeleteUser} 
             />
             <CleanupList 
