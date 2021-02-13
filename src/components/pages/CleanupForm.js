@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+// import { format } from "date-fns";
 
 function CleanupForm({ onCreateCleanup }) {
     // console.log("users in CleanupForm: ", users)
@@ -7,6 +8,10 @@ function CleanupForm({ onCreateCleanup }) {
     // const optionItems = users.map(user => {
     //     return <option key={user.id} value={user.username}>{user.username}</option>
     // })
+
+        // Ian's way to convert backend time table column type
+    // const date = new Date("Thu, 11 Feb 2021 20:10:42 GMT");
+    // console.log(format(date, "h:mm:ss aa"));
 
     const [formData, setFormData] = useState({
         name: "",
@@ -72,6 +77,8 @@ function CleanupForm({ onCreateCleanup }) {
 
     // minute_step: 15, ampm: true
 
+    // HH:mm
+
     return (
         <section>
             <div>
@@ -95,13 +102,13 @@ function CleanupForm({ onCreateCleanup }) {
                 <label htmlFor="image">Image URL:</label>
                 <input type="url" id="image" name="image" value={formData.image} onChange={handleChange}/>
                 <label htmlFor="date">Date:</label>
-                <input type="date"  id="date" name="date" value={formData.date} onChange={handleChange}/>
+                <input type="date" id="date" name="date" value={formData.date} onChange={handleChange}/>
                 <label htmlFor="start_time">Start Time:</label>
-                <input type="time"  id="start_time" name="start_time" value={formData.start_time} onChange={handleChange}/>
+                <input type="time" id="start_time" name="start_time" value={formData.start_time} onChange={handleChange}/>
                 <label htmlFor="end_time">End Time:</label>
-                <input type="time"  id="end_time" name="end_time" value={formData.end_time} onChange={handleChange}/>
+                <input type="time" id="end_time" name="end_time" value={formData.end_time} onChange={handleChange}/>
                 <label htmlFor="comment">Comment:</label>
-                <input type="text"  id="comment" name="comment" value={formData.comment} onChange={handleChange}/>
+                <input type="text" id="comment" name="comment" value={formData.comment} onChange={handleChange}/>
                 <button type="submit">Create Cleanup Event</button>
             </form>
         </section>
