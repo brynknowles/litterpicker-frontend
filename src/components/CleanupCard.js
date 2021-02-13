@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
+import { format } from "date-fns";
 
 function CleanupCard({ cleanup, onUpdateCheer, onUpdateCleanup, onDeleteCleanup }) {
-    // console.log(cleanup)
     const { id, name, location, category, image, date, start_time, end_time, comment, cheer, users } = cleanup
-    // console.log("cheer in CleanupCard: ", cheer)
     const [newCheer, setNewCheer] = useState(cheer)
+    const [newDate, setNewDate] = useState(date)
+    const [newStartTime, setNewStartTime] = useState(start_time)
+    const [newEndTime, setNewEndTime] = useState(end_time)
+    const [showEditForm, setShowEditForm] = useState(false)
 
-    // console.log("location in CleanupCard: ", location)
-    // console.log(cheer, newCheer)
+    const usernames = users.map((user) => <li>- {user.username}</li>)
 
     function changeDate(str) {
         let updatedDate = new Date(str.split('-'))
@@ -15,7 +17,11 @@ function CleanupCard({ cleanup, onUpdateCheer, onUpdateCleanup, onDeleteCleanup 
         return updatedDate.toLocaleDateString('en-US', options)
     }
 
-    const usernames = users.map((user) => user.username)
+    let startTime = new Date(start_time);
+    startTime = new Date(startTime.setHours(startTime.getHours() + 5)); 
+
+    let endTime = new Date(end_time);
+    endTime = new Date(endTime.setHours(endTime.getHours() + 5)); 
 
     function handleCleanupChange() {
 
@@ -53,7 +59,7 @@ function CleanupCard({ cleanup, onUpdateCheer, onUpdateCleanup, onDeleteCleanup 
         //     },
         //     body: JSON.stringify({
         //         user_id: current_user.id,
-        //         cleanup_id: current_cleanup.id
+        //         cleanup_id: cleanup.id
         //     })
         // })
         // .then(r => r.json())
@@ -63,6 +69,19 @@ function CleanupCard({ cleanup, onUpdateCheer, onUpdateCleanup, onDeleteCleanup 
     function handleEditClick() {
         // console.log("edit button clicked!")
         console.log("onUpdateCleanup fn in CleanupCard", onUpdateCleanup)
+
+        const updatedObj = {
+            date: newDate,
+            start_time: newStartTime,
+            end_time: newEndTime
+        }
+        fetch(`http://localhost:3000/user_cleanups/$(id)`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(updatedObj)
+        })
     }
 
     function handleDeleteClick() {
@@ -84,8 +103,8 @@ function CleanupCard({ cleanup, onUpdateCheer, onUpdateCleanup, onDeleteCleanup 
                 <p>Location: {location}</p>
                 <p>Category: {category}</p>
                 <p>Date: {changeDate(date)}</p>
-                <p>Start Time: {start_time}</p>
-                <p>End Time: {end_time}</p>
+                <p>Start Time: {format(startTime, "h:mm aa")}</p>
+                <p>End Time: {format(endTime, "h:mm aa")}</p>
                 <p>Comment: {comment}</p>
                 <p>LitterPickers: {usernames}</p>
             </div>

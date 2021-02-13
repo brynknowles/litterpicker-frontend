@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-// import { format } from "date-fns";
+// import DateTimePicker from 'react-datetime-picker'
+import TimePicker from 'react-time-picker';
+
 
 function CleanupForm({ onCreateCleanup }) {
     // console.log("users in CleanupForm: ", users)
@@ -9,9 +11,18 @@ function CleanupForm({ onCreateCleanup }) {
     //     return <option key={user.id} value={user.username}>{user.username}</option>
     // })
 
-        // Ian's way to convert backend time table column type
-    // const date = new Date("Thu, 11 Feb 2021 20:10:42 GMT");
-    // console.log(format(date, "h:mm:ss aa"));
+// const [value, onChange] = useState('10:00');
+
+// function MyApp() {
+//   return (
+//     <div>
+//       <TimePicker
+//         onChange={onChange}
+//         value={value}
+//       />
+//     </div>
+//   );
+// }
 
     const [formData, setFormData] = useState({
         name: "",
@@ -57,7 +68,7 @@ function CleanupForm({ onCreateCleanup }) {
                 console.log("newCleanup after submit", newCleanup)
                 onCreateCleanup(newCleanup);
             });
-        console.log("formData.category on submit", formData.category)
+        console.log("formData.start_time on submit", formData.start_time)
         setFormData({
             name: "",
             location: "",
@@ -71,13 +82,9 @@ function CleanupForm({ onCreateCleanup }) {
 
     }
 
-    console.log("formData before submit", formData)
+    // console.log("formData after submit", formData)
 
     // console.log("formData in CleanupForm: ", formData)
-
-    // minute_step: 15, ampm: true
-
-    // HH:mm
 
     return (
         <section>
@@ -104,6 +111,10 @@ function CleanupForm({ onCreateCleanup }) {
                 <label htmlFor="date">Date:</label>
                 <input type="date" id="date" name="date" value={formData.date} onChange={handleChange}/>
                 <label htmlFor="start_time">Start Time:</label>
+                    {/* <TimePicker
+                        onChange={handleChange}
+                        value={formData.start_time}
+                    /> */}
                 <input type="time" id="start_time" name="start_time" value={formData.start_time} onChange={handleChange}/>
                 <label htmlFor="end_time">End Time:</label>
                 <input type="time" id="end_time" name="end_time" value={formData.end_time} onChange={handleChange}/>
