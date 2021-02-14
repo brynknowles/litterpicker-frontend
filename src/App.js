@@ -35,6 +35,8 @@ function App() {
     earth_steward_badge: 1
   })
 
+  const [userCleanups, setUserCleanups] = useState([])
+
   // console.log("users, cleanups and searchTerm in App", { users, cleanups, searchTerm })
 
   useEffect(() => {
@@ -53,8 +55,15 @@ function App() {
     .then(data => setCleanups(data))
   }, [])
 
+  useEffect(() => {
+    fetch("http://localhost:3000/user_cleanups")
+    .then(r => r.json())
+    .then(data => setUserCleanups(data))
+  }, [])
+
   // console.log("users in App", users)
   // console.log("cleanups in App", cleanups)
+  console.log("userCleanups in App: ", userCleanups)
 
   //        ********** CLEANUP **********
 
@@ -92,8 +101,9 @@ function App() {
   }
 
     // WORK ON THIS - Sign User up to Cleanup Event
-  function handleAttendeeSignup(attendee) {
-    console.log("attendee in App: ", attendee)
+  function handleAttendeeSignup(newAttendee) {
+    console.log("attendee in App: ", newAttendee)
+    // setUserCleanups([newAttendee, ...userCleanups])
   }
 
     // DONE - Delete Cleanup
@@ -111,16 +121,16 @@ function App() {
     setUsers([newUser, ...users]);
   }
 
-  function handleUpdateUser(updatedUser) {
-    console.log("updatedUser in App: ", updatedUser)
-    const updatedUserArray = users.map((user) => {
-      if (user.id === updatedUser.id) {
-        return updatedUser
+  function handleUpdateProfile(updatedProfile) {
+    console.log("updatedProfile in App: ", updatedProfile)
+    const updatedProfileArray = users.map((user) => {
+      if (user.id === updatedProfile.id) {
+        return updatedProfile
       } else {
         return user
       }
     })
-    setUsers(updatedUserArray)
+    setUsers(updatedProfileArray)
   }
 
     // DONE - Delete User
@@ -150,7 +160,7 @@ function App() {
               currentUser={currentUser} 
               users={users} 
               setUsers={setUsers} 
-              onUpdateUser={handleUpdateUser}
+              onUpdateProfile={handleUpdateProfile}
               onDeleteUser={handleDeleteUser} 
               cleanups={filteredCleanups} 
               setCleanups={setCleanups} 

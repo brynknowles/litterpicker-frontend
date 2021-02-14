@@ -2,15 +2,13 @@ import React, { useState } from 'react'
 import { format } from "date-fns";
 import EditCleanupForm from './EditCleanupForm';
 
-function CleanupCard({ cleanup, onUpdateCheer, onUpdateCleanup, onAttendeeSignup, onDeleteCleanup }) {
+function CleanupCard({ currentUser, cleanup, onUpdateCheer, onUpdateCleanup, onAttendeeSignup, onDeleteCleanup }) {
     const { id, name, location, category, image, date, start_time, end_time, comment, cheer, users } = cleanup
+
     const [newCheer, setNewCheer] = useState(cheer)
-    // const [newDate, setNewDate] = useState(date)
-    // const [newStartTime, setNewStartTime] = useState(start_time)
-    // const [newEndTime, setNewEndTime] = useState(end_time)
     const [showEditForm, setShowEditForm] = useState(false)
 
-    const attendees = users.map((user) => <li>- {user.username}</li>)
+    const attendees = users.map((user) => <li key={user.username}>- {user.username}</li>)
 
     function changeDate(str) {
         let updatedDate = new Date(str.split('-'))
@@ -51,7 +49,8 @@ function CleanupCard({ cleanup, onUpdateCheer, onUpdateCleanup, onAttendeeSignup
         setNewCheer(updatedObj.cheer)
     }
 
-    function handleSignupClick() {
+    function handleSignupClick(e) {
+        e.preventDefault()
         console.log("signup clicked")
         // fetch(`http://localhost:3000/user_cleanups/${id}`, {
         //     method: "POST",
@@ -59,12 +58,13 @@ function CleanupCard({ cleanup, onUpdateCheer, onUpdateCleanup, onAttendeeSignup
         //         "Content-Type": "application/json",
         //     },
         //     body: JSON.stringify({
-        //         user_id: current_user.id,
+        //         user_id: currentUser.id,
         //         cleanup_id: cleanup.id
         //     })
         // })
         // .then(r => r.json())
         // .then(console.log)
+        onAttendeeSignup()
     }
 
     function handleDeleteClick() {

@@ -1,35 +1,13 @@
 import React, { useState } from 'react'
 import EditProfileForm from './EditProfileForm'
 
-function ProfileCard({ user, onUpdateUser, onDeleteUser }) {
+function ProfileCard({ user, onUpdateProfile, onDeleteUser }) {
     const { id, avatar, username, age, catchphrase, park_badge, playground_badge, shoreline_badge, trail_badge, earth_steward_badge } = user
 
-    function toggleEditForm() {
-        setShowEditForm(!showEditForm)
-    }
+    const [showProfileEditForm, setShowProfileEditForm] = useState(false)
 
-    function handleEditSubmit(event) {
-        event.preventDefault()
-        console.log("submitting")
-        console.log({ editedAvatar, editedUsername, editedAge, editedCatchphrase })
-        // fetch(`http://localhost:3000/users/${id}`, {
-        //     method: "PATCH",
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         'Accept': 'application/json'
-        //     },
-        //     body: JSON.stringify({
-        //         avatar: editedAvatar,
-        //         username: editedUsername,
-        //         age: editedAge,
-        //         catchphrase: editedCatchphrase
-        //     })
-        // })
-        //     .then(r => r.json())
-        //     .then(console.log)
-        //     // .then(data => {
-        //     //   onEditUser(data)
-        //     // })
+    function toggleEditForm() {
+        setShowProfileEditForm(!showProfileEditForm)
     }
 
     function handleDeleteClick() {
@@ -59,10 +37,10 @@ function ProfileCard({ user, onUpdateUser, onDeleteUser }) {
                     <li>Earth Steward: {earth_steward_badge}</li>
                 </ul>
                 <button className="button" onClick={toggleEditForm}>Edit Profile</button>
-                {showEditForm ? (
+                {showProfileEditForm ? (
                     <EditProfileForm 
                         user={user}
-                        onUpdateUser={onUpdateUser}
+                        onUpdateProfile={onUpdateProfile}
                     />
                     ) : ( 
                         null 

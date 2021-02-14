@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 
 function EditCleanupForm({ cleanup, onUpdateCleanup }) {
     const { id, image, date, start_time, end_time, comment } = cleanup
+
+    const [showForm, setShowForm] = useState(false)
     const [newImage, setNewImage] = useState(image)
     const [newDate, setNewDate] = useState(date)
     const [newStartTime, setNewStartTime] = useState(start_time)
     const [newEndTime, setNewEndTime] = useState(end_time)
     const [newComment, setNewComment] = useState(comment)
-    const [showForm, setShowForm] = useState(false)
 
     function handleEditSubmit(e) {
         e.preventDefault()
@@ -39,6 +40,7 @@ function EditCleanupForm({ cleanup, onUpdateCleanup }) {
         setNewStartTime(updatedObj.start_time)
         setNewEndTime(updatedObj.end_time)
         setNewComment(updatedObj.comment)
+        setShowForm(showForm)
     }
 
     return (
