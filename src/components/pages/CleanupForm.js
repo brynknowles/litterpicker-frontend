@@ -1,11 +1,6 @@
 import React, { useState } from 'react'
-// import DateTimePicker from 'react-datetime-picker'
-// import TimePicker from 'react-time-picker';
-
 
 function CleanupForm({ onCreateCleanup }) {
-    // console.log("users in CleanupForm: ", users)
-    // const { username } = users
 
     const [formData, setFormData] = useState({
         name: "",
@@ -33,7 +28,6 @@ function CleanupForm({ onCreateCleanup }) {
     }
 
     // console.log("formData before submit", formData)
-    // console.log("form data ", formData)
 
     function handleSubmit(event) {
         event.preventDefault()
@@ -62,12 +56,9 @@ function CleanupForm({ onCreateCleanup }) {
             end_time: "",
             comment: ""
         })
-
     }
 
     // console.log("formData after submit", formData)
-
-    // console.log("formData in CleanupForm: ", formData)
 
     return (
         <section>

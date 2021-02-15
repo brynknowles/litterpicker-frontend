@@ -3,12 +3,14 @@ import { format } from "date-fns";
 import EditCleanupForm from './EditCleanupForm';
 
 function CleanupCard({ currentUser, cleanup, onUpdateCheer, onUpdateCleanup, onAttendeeSignup, onDeleteCleanup }) {
+    // console.log("cleanup.id in CleanupCard: ", cleanup.id)
+    // console.log("currentUser.id in CleanupCard: ", currentUser.id)
     const { id, name, location, category, image, date, start_time, end_time, comment, cheer, users } = cleanup
 
     const [newCheer, setNewCheer] = useState(cheer)
     const [showEditForm, setShowEditForm] = useState(false)
 
-    const attendees = users.map((user) => <li key={user.username}>- {user.username}</li>)
+    const eventAttendees = users.map((user) => <li key={user.username}>- {user.username}</li>)
 
     function changeDate(str) {
         let updatedDate = new Date(str.split('-'))
@@ -41,9 +43,8 @@ function CleanupCard({ currentUser, cleanup, onUpdateCheer, onUpdateCleanup, onA
             body: JSON.stringify(updatedObj)
         })
             .then(r => r.json())
-            // .then(console.log)
             .then(updatedCleanup => {
-                console.log("updatedCleanup in CleanupCard: ", updatedCleanup)
+                // console.log("updatedCleanup in CleanupCard: ", updatedCleanup)
                 onUpdateCheer(updatedCleanup)
             })
         setNewCheer(updatedObj.cheer)
@@ -52,19 +53,21 @@ function CleanupCard({ currentUser, cleanup, onUpdateCheer, onUpdateCleanup, onA
     function handleSignupClick(e) {
         e.preventDefault()
         console.log("signup clicked")
-        // fetch(`http://localhost:3000/user_cleanups/${id}`, {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //     },
-        //     body: JSON.stringify({
-        //         user_id: currentUser.id,
-        //         cleanup_id: cleanup.id
-        //     })
-        // })
-        // .then(r => r.json())
-        // .then(console.log)
-        onAttendeeSignup()
+        fetch("http://localhost:3000/user_cleanups/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                user_id: currentUser.id,
+                cleanup_id: id
+            })
+        })
+        .then(r => r.json())
+        .then(newAttendee => {
+            console.log("newAttendee in POST: ", newAttendee)
+            onAttendeeSignup(newAttendee)
+        })
     }
 
     function handleDeleteClick() {
@@ -91,7 +94,7 @@ function CleanupCard({ currentUser, cleanup, onUpdateCheer, onUpdateCleanup, onA
                 <p>Comment: {comment}</p>
                 <p>LitterPickers:</p>
                 <ul>
-                    {attendees}
+                    {eventAttendees}
                 </ul>
             </div>
             <button onClick={handleSignupClick}>Sign Up To Event</button>

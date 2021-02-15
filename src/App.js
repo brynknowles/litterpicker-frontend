@@ -24,6 +24,7 @@ function App() {
   const [cleanupSearchTerm, setCleanupSearchTerm] = useState("")
 
   const [currentUser, setCurrentUser] = useState({
+    id: 1,
     avatar: "https://www.greatoutdoorshop.com/wp-content/uploads/2019/08/WOODSY-OWL-STICKER-1000.jpg",
     username: "Woodsy Owl",
     age: 50,
@@ -34,6 +35,8 @@ function App() {
     trail_badge: 0,
     earth_steward_badge: 1
   })
+
+  // console.log("currentUser in App: ", currentUser)
 
   const [userCleanups, setUserCleanups] = useState([])
 
@@ -63,7 +66,7 @@ function App() {
 
   // console.log("users in App", users)
   // console.log("cleanups in App", cleanups)
-  console.log("userCleanups in App: ", userCleanups)
+  // console.log("userCleanups in App: ", userCleanups)
 
   //        ********** CLEANUP **********
 
@@ -87,7 +90,7 @@ function App() {
     setCleanups(updatedCleanups)
   }
 
-   // WORK ON THIS - Update Cleanup time and date
+   // DONE - Update Cleanup time and date
   function handleUpdateCleanup(updatedCleanup) {
     console.log("updatedCleanup in App: ", updatedCleanup)
     const updatedCleanupArray = cleanups.map((cleanup) => {
@@ -100,10 +103,10 @@ function App() {
     setCleanups(updatedCleanupArray)
   }
 
-    // WORK ON THIS - Sign User up to Cleanup Event
+    // DONE - Sign User up to Cleanup Event
   function handleAttendeeSignup(newAttendee) {
     console.log("attendee in App: ", newAttendee)
-    // setUserCleanups([newAttendee, ...userCleanups])
+    setUserCleanups([newAttendee, ...userCleanups])
   }
 
     // DONE - Delete Cleanup
@@ -193,12 +196,6 @@ function App() {
             <Redirect to="/" />
           </Route>
         </Switch>
-        {/* <Home /> */}
-        {/* <Explore users={filteredUsers} cleanups={filteredCleanups} /> */}
-        {/* <Profile users={filteredUsers} onUserDelete={handleDeleteUser} /> */}
-        {/* <CleanupForm onCreateCleanup={handleCreateCleanup}/> */}
-        {/* <SignupForm onCreateUser={handleCreateUser} /> */}
-
         <Footer />
       </div>
   );

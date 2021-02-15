@@ -32,7 +32,7 @@ function EditCleanupForm({ cleanup, onUpdateCleanup }) {
         })
             .then(r => r.json())
             .then(updatedCleanup => {
-                console.log("updated date and time in CleanupCard: ", updatedCleanup)
+                // console.log("updatedCleanup in CleanupCard: ", updatedCleanup)
                 onUpdateCleanup(updatedCleanup)
             })
         setNewImage(updatedObj.image)

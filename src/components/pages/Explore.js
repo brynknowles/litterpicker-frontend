@@ -5,6 +5,7 @@ import CleanupList from "../CleanupList"
 
 function Explore({ users, cleanups, currentUser, onUpdateProfile, onDeleteUser, cleanupSearchTerm, setCleanupSearchTerm, onUpdateCheer, onUpdateCleanup, onAttendeeSignup, onDeleteCleanup }) {
 
+    // console.log("currentUser in Explore: ",currentUser)
     return (
         <section>
             <ProfileList 
