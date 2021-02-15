@@ -24,8 +24,6 @@ function CleanupList({ currentUser, cleanups, cleanupSearchTerm, setCleanupSearc
                 />
     })
 
-    // const sortedActivities = activities.sort((a, b) => b.date - a.date)
-
     return (
         <section>
             <h1>Cleanup List</h1>
