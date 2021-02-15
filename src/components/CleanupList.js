@@ -5,11 +5,6 @@ function CleanupList({ currentUser, cleanups, cleanupSearchTerm, setCleanupSearc
     // console.log("currentUser in CleanupList: ", currentUser)
     // console.log("cleanups in CleanupList: ", cleanups)
 
-    // movies.sort(function(a, b) {
-    //     var dateA = new Date(a.release), dateB = new Date(b.release);
-    //     return dateA - dateB;
-    // });
-
     const sortedCleanups = cleanups.sort(function(a, b) {
         let dateA = new Date(a.date)
         let dateB = new Date(b.date)
