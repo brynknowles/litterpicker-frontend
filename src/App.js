@@ -9,7 +9,7 @@ import Header from './components/Header'
 import NavBar from './components/NavBar'
 import Home from './components/pages/Home'
 import Explore from './components/pages/Explore'
-// import Profile from './components/Profile'
+import ProfileDetail from './components/pages/ProfileDetail'
 import CleanupForm from './components/pages/CleanupForm'
 import SignupForm from './components/pages/SignupForm'
 import Footer from './components/Footer'
@@ -47,6 +47,7 @@ function App() {
     fetch("http://localhost:3000/users")
     .then(r => r.json())
     // .then(data => console.log("user data in App", data))
+    // .then(setUsers)
     .then(data => setUsers(data))
   }, [])
 
@@ -174,6 +175,9 @@ function App() {
               onAttendeeSignup={handleAttendeeSignup} 
               onDeleteCleanup={handleDeleteCleanup} 
             /> 
+          </Route>
+          <Route exact path="/users/:id">
+            <ProfileDetail />
           </Route>
           {/* <Route exact path="/users/:id">
             <ProfileDetail users={users} />

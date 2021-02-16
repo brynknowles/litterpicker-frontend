@@ -49,7 +49,7 @@ function SignupForm({ onCreateUser }) {
 
     return (
         <section>
-            <h1>Signup Form</h1>
+            <h1>Become A LitterPicker!</h1>
             <form className="form" onSubmit={handleSubmit}>
                 <label htmlFor="avatar">Avatar (Image URL):</label>
                 <input type="text" aria-label="user avatar" id="avatar" name="avatar" value={formData.avatar} onChange={handleChange}></input>

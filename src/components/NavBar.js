@@ -20,7 +20,7 @@ function NavBar({ currentUser, setCurrentUser }) {
         <NavLink exact to="/" className="button">
             Home
         </NavLink>
-        <NavLink exact to={"/cleanups"} className="button">
+        <NavLink exact to="/cleanups" className="button">
             Explore
         </NavLink>
         {/* <NavLink exact to="/users/:id" className="button">

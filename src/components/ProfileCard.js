@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import EditProfileForm from './EditProfileForm'
+import { Link } from "react-router-dom";
 
 function ProfileCard({ user, onUpdateProfile, onDeleteUser }) {
     const { id, avatar, username, age, catchphrase, park_badge, playground_badge, shoreline_badge, trail_badge, earth_steward_badge } = user
@@ -36,6 +37,9 @@ function ProfileCard({ user, onUpdateProfile, onDeleteUser }) {
                     <li>Trail: {trail_badge}</li>
                     <li>Earth Steward: {earth_steward_badge}</li>
                 </ul>
+                <p>
+                    <Link to={`/users/${id}`}>See Details</Link>
+                </p>
                 <button className="button" onClick={toggleEditForm}>Edit Profile</button>
                 {showProfileEditForm ? (
                     <EditProfileForm 
