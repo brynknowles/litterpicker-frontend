@@ -20,13 +20,13 @@ function NavBar({ currentUser, setCurrentUser }) {
         <NavLink exact to="/" className="button">
             Home
         </NavLink>
-        <NavLink exact to="/cleanups" className="button">
+        <NavLink exact to="/explore" className="button">
             Explore
         </NavLink>
         {/* <NavLink exact to="/users/:id" className="button">
             Profile
         </NavLink> */}
-        <NavLink exact to="/cleanups/new" className="button">
+        <NavLink exact to="/create_event" className="button">
             Create
         </NavLink>
         {/* {currentUser ? (
@@ -34,7 +34,7 @@ function NavBar({ currentUser, setCurrentUser }) {
         ) : (
             <button onClick={login}>Login</button>
         )} */}
-        <NavLink exact to="/users/signup" className="button">
+        <NavLink exact to="/signup" className="button">
             Signup
         </NavLink>
     </nav>

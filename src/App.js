@@ -21,6 +21,7 @@ function App() {
   // const [currentUser, setCurrentUser] = useState(null);
   const [users, setUsers] = useState([])
   const [cleanups, setCleanups] = useState([])
+  const [userCleanups, setUserCleanups] = useState([])
   const [cleanupSearchTerm, setCleanupSearchTerm] = useState("")
 
   const [currentUser, setCurrentUser] = useState({
@@ -36,32 +37,30 @@ function App() {
     earth_steward_badge: 1
   })
 
-  // console.log("currentUser in App: ", currentUser)
+  // console.log("currentUser in App: ", currentUser
 
-  const [userCleanups, setUserCleanups] = useState([])
-
-  // console.log("users, cleanups and searchTerm in App", { users, cleanups, searchTerm })
+  // console.log("users, cleanups, userCleanups and searchTerm in App", { users, cleanups, cleanupSearchTerm })
 
   useEffect(() => {
-    // fetch(`${process.env.REACT_APP_API_BASE_URL}/users`)
     fetch("http://localhost:3000/users")
     .then(r => r.json())
-    // .then(data => console.log("user data in App", data))
-    // .then(setUsers)
+    // .then(data => console.log("users data in App", data))
     .then(data => setUsers(data))
   }, [])
 
+  // console.log("users in App: ", users)
+
   useEffect(() => {
-    // fetch(`${process.env.REACT_APP_API_BASE_URL}/cleanups`)
     fetch("http://localhost:3000/cleanups")
     .then(r => r.json())
-    // .then(data => console.log("cleanup data in App", data))
+    // .then(data => console.log("cleanups data in App", data))
     .then(data => setCleanups(data))
   }, [])
 
   useEffect(() => {
     fetch("http://localhost:3000/user_cleanups")
     .then(r => r.json())
+    // .then(data => console.log("userCleanups data in App: ", data))
     .then(data => setUserCleanups(data))
   }, [])
 
@@ -69,7 +68,8 @@ function App() {
   // console.log("cleanups in App", cleanups)
   // console.log("userCleanups in App: ", userCleanups)
 
-  //        ********** CLEANUP **********
+  // **************************************************************************
+  // CLEANUPS
 
     // DONE - Create Cleanup
   function handleCreateCleanup(newCleanup) {
@@ -104,20 +104,32 @@ function App() {
     setCleanups(updatedCleanupArray)
   }
 
-    // DONE - Sign User up to Cleanup Event
-  function handleAttendeeSignup(newAttendee) {
-    console.log("attendee in App: ", newAttendee)
-    setUserCleanups([newAttendee, ...userCleanups])
-  }
-
     // DONE - Delete Cleanup
   function handleDeleteCleanup(cleanupToDelete) {
     // console.log(cleanupToDelete)
     const updatedCleanups = cleanups.filter((cleanup) => cleanup.id !== cleanupToDelete)
     setUsers(updatedCleanups)
   }
+    
 
-  //        ********** USER **********
+  // **************************************************************************
+  // USER_CLEANUPS
+
+    // DONE - Sign User up to Cleanup Event
+  function handleAttendeeSignup(newAttendee) {
+    console.log("attendee in App: ", newAttendee)
+    setUserCleanups([newAttendee, ...userCleanups])
+  }
+
+    // WORK ON THIS - Remove User From Event
+  function handleLeaveEvent(eventAttendeeToLeave) {
+    console.log("eventAttendeeToLeave in App", eventAttendeeToLeave)
+    const updatedUserCleanups = userCleanups.filter((eventAttendee) => eventAttendee.id !== eventAttendeeToLeave)
+    setUserCleanups(updatedUserCleanups)
+  }
+
+  // **************************************************************************
+  // USERS
 
     // DONE - Create User
   function handleCreateUser(newUser) {
@@ -144,6 +156,9 @@ function App() {
     setUsers(updatedUsers)
   }
 
+  // **************************************************************************
+  // SEARCH CLEANUPS
+
     // DONE - Searches cleanups
   const filteredCleanups = cleanups.filter((cleanup) => {
     // console.log("cleanup in search term filter: ", cleanup)
@@ -159,7 +174,7 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route exact path="/cleanups">
+          <Route exact path="/explore">
             <Explore 
               currentUser={currentUser} 
               users={users} 
@@ -173,6 +188,7 @@ function App() {
               onUpdateCheer={handleUpdateCheer} 
               onUpdateCleanup={handleUpdateCleanup} 
               onAttendeeSignup={handleAttendeeSignup} 
+              onLeaveEvent={handleLeaveEvent}
               onDeleteCleanup={handleDeleteCleanup} 
             /> 
           </Route>
@@ -185,13 +201,13 @@ function App() {
           {/* <Route exact path="/cleanups/:id">
             <CleanupDetail cleanups={filteredCleanups}/>
           </Route> */}
-          <Route exact path="/cleanups/new">
+          <Route exact path="/create_event">
             <CleanupForm 
               users={users} 
               onCreateCleanup={handleCreateCleanup}
             />
           </Route>
-          <Route exact path="/users/signup">
+          <Route exact path="/signup">
             <SignupForm 
               onCreateUser={handleCreateUser} 
             />

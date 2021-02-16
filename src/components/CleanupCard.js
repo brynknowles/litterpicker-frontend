@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { format } from "date-fns";
 import EditCleanupForm from './EditCleanupForm';
 
-function CleanupCard({ currentUser, cleanup, onUpdateCheer, onUpdateCleanup, onAttendeeSignup, onDeleteCleanup }) {
+function CleanupCard({ currentUser, cleanup, userCleanup, onUpdateCheer, onUpdateCleanup, onAttendeeSignup, onLeaveEvent, onDeleteCleanup }) {
     // console.log("cleanup.id in CleanupCard: ", cleanup.id)
     // console.log("currentUser.id in CleanupCard: ", currentUser.id)
     const { id, name, location, category, image, date, start_time, end_time, comment, cheer, users } = cleanup
@@ -70,6 +70,15 @@ function CleanupCard({ currentUser, cleanup, onUpdateCheer, onUpdateCleanup, onA
         })
     }
 
+    console.log()
+
+    function handleLeaveEventClick() {
+        fetch(`http://localhost:3000/user_cleanups/${id}`, {
+            method: "DELETE"
+        })
+        onLeaveEvent(id)
+    }
+
     function handleDeleteClick() {
         // console.log(id)
         fetch(`http://localhost:3000/cleanups/${id}`, {
@@ -98,6 +107,7 @@ function CleanupCard({ currentUser, cleanup, onUpdateCheer, onUpdateCleanup, onA
                 </ul>
             </div>
             <button onClick={handleSignupClick}>Sign Up To Event</button>
+            <button onClick={handleLeaveEventClick}>Leave Event</button>
             <button onClick={toggleEditForm}>Edit Event</button>
             {showEditForm ? (
                 <EditCleanupForm 
