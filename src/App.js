@@ -107,8 +107,8 @@ function App() {
     // DONE - Delete Cleanup
   function handleDeleteCleanup(cleanupToDelete) {
     // console.log(cleanupToDelete)
-    const updatedCleanups = cleanups.filter((cleanup) => cleanup.id !== cleanupToDelete)
-    setUsers(updatedCleanups)
+    const updatedCleanups = cleanups.filter((cleanup) => cleanup.id !== cleanupToDelete.id)
+    setCleanups(updatedCleanups)
   }
     
 
@@ -118,15 +118,16 @@ function App() {
     // DONE - Sign User up to Cleanup Event
   function handleAttendeeSignup(newAttendee) {
     console.log("attendee in App: ", newAttendee)
-    setUserCleanups([newAttendee, ...userCleanups])
+    setUserCleanups([...userCleanups, newAttendee])
   }
 
     // WORK ON THIS - Remove User From Event
-  function handleLeaveEvent(eventAttendeeToLeave) {
-    console.log("eventAttendeeToLeave in App", eventAttendeeToLeave)
-    const updatedUserCleanups = userCleanups.filter((eventAttendee) => eventAttendee.id !== eventAttendeeToLeave)
-    setUserCleanups(updatedUserCleanups)
-  }
+  // function handleLeaveEvent(attendeeToLeave) {
+  //   // console.log("eventAttendeeToLeave in App", eventAttendeeToLeave)
+  //   const updatedUserCleanups = [...userCleanups].filter((userCleanup) => userCleanup.id !== attendeeToLeave.id)
+  //   setUserCleanups(updatedUserCleanups)
+  //   // setCleanups([...cleanups])
+  // }
 
   // **************************************************************************
   // USERS
@@ -151,7 +152,7 @@ function App() {
 
     // DONE - Delete User
   function handleDeleteUser(userToDelete) {
-    console.log(userToDelete)
+    console.log("userToDelete in App: ", userToDelete)
     const updatedUsers = users.filter((user) => user.id !== userToDelete)
     setUsers(updatedUsers)
   }
@@ -178,7 +179,7 @@ function App() {
             <Explore 
               currentUser={currentUser} 
               users={users} 
-              setUsers={setUsers} 
+              setUsers={setUsers}
               onUpdateProfile={handleUpdateProfile}
               onDeleteUser={handleDeleteUser} 
               cleanups={filteredCleanups} 
@@ -188,7 +189,7 @@ function App() {
               onUpdateCheer={handleUpdateCheer} 
               onUpdateCleanup={handleUpdateCleanup} 
               onAttendeeSignup={handleAttendeeSignup} 
-              onLeaveEvent={handleLeaveEvent}
+              // onLeaveEvent={handleLeaveEvent}
               onDeleteCleanup={handleDeleteCleanup} 
             /> 
           </Route>
