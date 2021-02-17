@@ -117,17 +117,17 @@ function App() {
 
     // DONE - Sign User up to Cleanup Event
   function handleAttendeeSignup(newAttendee) {
-    console.log("attendee in App: ", newAttendee)
+    // console.log("attendee in App: ", newAttendee)
     setUserCleanups([...userCleanups, newAttendee])
   }
 
     // WORK ON THIS - Remove User From Event
-  // function handleLeaveEvent(attendeeToLeave) {
-  //   // console.log("eventAttendeeToLeave in App", eventAttendeeToLeave)
-  //   const updatedUserCleanups = [...userCleanups].filter((userCleanup) => userCleanup.id !== attendeeToLeave.id)
-  //   setUserCleanups(updatedUserCleanups)
-  //   // setCleanups([...cleanups])
-  // }
+  function handleLeaveEvent(attendeeToLeave) {
+    // console.log("eventAttendeeToLeave in App", eventAttendeeToLeave)
+    const updatedUserCleanups = userCleanups.filter((userCleanup) => userCleanup.id !== attendeeToLeave.id)
+    setUserCleanups(updatedUserCleanups)
+    // setCleanups([...cleanups])
+  }
 
   // **************************************************************************
   // USERS

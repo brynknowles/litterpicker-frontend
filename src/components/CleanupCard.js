@@ -61,6 +61,7 @@ function CleanupCard({ currentUser, cleanup, onUpdateCheer, onUpdateCleanup, onA
             method: "DELETE"
         })
         onDeleteCleanup(id)
+        window.location.reload()
     }
 
     function handleSignupClick(e) {
@@ -81,23 +82,24 @@ function CleanupCard({ currentUser, cleanup, onUpdateCheer, onUpdateCleanup, onA
             console.log("newAttendee in POST: ", newAttendee)
             onAttendeeSignup(newAttendee)
         })
+        window.location.reload()
     }
 
-    // function handleLeaveEventClick() {
-    //     fetch(`http://localhost:3000/user_cleanups/${cleanupEventId}`, {
-    //         method: "DELETE",
-    //         headers: {
-    //             'Content-Type': "application/json"
-    //         }
-    //     })
-    //     .then(r => r.json())
-    //     .then(deletedObj => {
-    //         console.log("deletedObj in CleanupCard: ", deletedObj)
-    //         onLeaveEvent(deletedObj)
-    //     })
-    //     // window.location.reload()
-    //     console.log("cleanup after delete userCleanup: ", cleanup)
-    // }
+    function handleLeaveEventClick() {
+        fetch(`http://localhost:3000/user_cleanups/${cleanupEventId}`, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': "application/json"
+            }
+        })
+        .then(r => r.json())
+        .then(deletedObj => {
+            console.log("deletedObj in CleanupCard: ", deletedObj)
+            onLeaveEvent(deletedObj)
+        })
+        window.location.reload()
+        console.log("cleanup after delete userCleanup: ", cleanup)
+    }
 
     // function handleEventClick() {
     //     fetch()
@@ -122,13 +124,13 @@ function CleanupCard({ currentUser, cleanup, onUpdateCheer, onUpdateCleanup, onA
                 <p>Start Time: {format(startTime, "h:mm aa")}</p>
                 <p>End Time: {format(endTime, "h:mm aa")}</p>
                 <p>Comment: {comment}</p>
-                <p>LitterPickers:</p>
+                <p><strong>LitterPickers:</strong></p>
                 <ul>
                     {eventAttendees}
                 </ul>
             </div>
             <button onClick={handleSignupClick}>Sign Up To Event</button>
-            {/* <button onClick={handleLeaveEventClick}>Leave Event</button> */}
+            <button onClick={handleLeaveEventClick}>Leave Event</button>
             <button onClick={toggleEditForm}>Edit Event</button>
             {showEditForm ? (
                 <EditCleanupForm 
