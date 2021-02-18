@@ -1,7 +1,7 @@
 import SearchCleanups from "./SearchCleanups"
 import CleanupCard from "./CleanupCard"
 
-function CleanupList({ currentUser, cleanups, cleanupSearchTerm, setCleanupSearchTerm, onUpdateCheer, onUpdateCleanup, onAttendeeSignup, onLeaveEvent, onDeleteCleanup }) {
+function CleanupList({ handleDeleteAttendee, currentUser, cleanups, cleanupSearchTerm, setCleanupSearchTerm, onUpdateCheer, onUpdateCleanup, onAttendeeSignup, onLeaveEvent, onDeleteCleanup }) {
     // console.log("currentUser in CleanupList: ", currentUser)
     // console.log("cleanups in CleanupList: ", cleanups)
 
@@ -15,6 +15,7 @@ function CleanupList({ currentUser, cleanups, cleanupSearchTerm, setCleanupSearc
     const displayCleanups = sortedCleanups.map((cleanup) => {
         return <CleanupCard 
                     key={cleanup.id}
+                    handleDeleteAttendee={handleDeleteAttendee}
                     currentUser={currentUser} 
                     cleanup={cleanup} 
                     onUpdateCheer={onUpdateCheer} 

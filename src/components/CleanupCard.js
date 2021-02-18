@@ -2,20 +2,21 @@ import React, { useState } from 'react'
 import { format } from "date-fns";
 import EditCleanupForm from './EditCleanupForm';
 
-function CleanupCard({ currentUser, cleanup, onUpdateCheer, onUpdateCleanup, onAttendeeSignup, onLeaveEvent, onDeleteCleanup }) {
+function CleanupCard({ handleDeleteAttendee, currentUser, cleanup, onUpdateCheer, onUpdateCleanup, onAttendeeSignup, onLeaveEvent, onDeleteCleanup }) {
     // console.log("cleanup.id in CleanupCard: ", cleanup.id)
     // console.log("currentUser.id in CleanupCard: ", currentUser.id)
     // console.log("userCleanups in CleanupCard: ", userCleanups)
 
     const { id, name, location, category, image, date, start_time, end_time, comment, cheer, users, user_cleanups } = cleanup
-    console.log("user_cleanups in CleanupCard: ", user_cleanups)
+    // console.log("user_cleanups in CleanupCard: ", user_cleanups)
 
     const [newCheer, setNewCheer] = useState(cheer)
     const [showEditForm, setShowEditForm] = useState(false)
 
     const eventAttendees = user_cleanups.map(({user}) => <li key={user.username}>- {user.username}</li>)
 
-    const cleanupEventId = user_cleanups.map((userCleanup) => userCleanup.id)
+    const userCleanupId = user_cleanups.map((userCleanup) => userCleanup.id)
+    console.log("userCleanupId in CleanupCard: ", userCleanupId)
 
     function changeDate(str) {
         let updatedDate = new Date(str.split('-'))
@@ -61,7 +62,7 @@ function CleanupCard({ currentUser, cleanup, onUpdateCheer, onUpdateCleanup, onA
             method: "DELETE"
         })
         onDeleteCleanup(id)
-        window.location.reload()
+        // window.location.reload()
     }
 
     function handleSignupClick(e) {
@@ -70,7 +71,7 @@ function CleanupCard({ currentUser, cleanup, onUpdateCheer, onUpdateCleanup, onA
         fetch("http://localhost:3000/user_cleanups/", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "application/json"
             },
             body: JSON.stringify({
                 user_id: currentUser.id,
@@ -82,20 +83,32 @@ function CleanupCard({ currentUser, cleanup, onUpdateCheer, onUpdateCleanup, onA
             console.log("newAttendee in POST: ", newAttendee)
             onAttendeeSignup(newAttendee)
         })
-        window.location.reload()
+        // window.location.reload()
     }
 
+    // handleDeleteAttendee(cleanup)
+
+    // function handleLeaveEventClick() {
+    //     fetch(`http://localhost:3000/user_cleanups/${userCleanupId}`, {
+    //         method: "DELETE"
+    //     })
+    //     .then(r => r.json())
+    //     .then(deletedObj => handleDeleteAttendee(cleanup))
+    //         // console.log("deletedObj in CleanupCard: ", deletedObj)
+    //         // onLeaveEvent(cleanup)
+    //     // console.log("cleanup after delete userCleanup: ", cleanup)
+    // }
+
     function handleLeaveEventClick() {
-        fetch(`http://localhost:3000/user_cleanups/${cleanupEventId}`, {
-            method: "DELETE"
+        fetch(`http://localhost:3000/user_cleanups/${userCleanupId}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
         })
         .then(r => r.json())
-        .then(deletedObj => {
-            console.log("deletedObj in CleanupCard: ", deletedObj)
-            onLeaveEvent(cleanupEventId)
-        })
-        window.location.reload()
-        console.log("cleanup after delete userCleanup: ", cleanup)
+        .then(data => handleDeleteAttendee(cleanup))
+            window.location.reload()
     }
 
     return (

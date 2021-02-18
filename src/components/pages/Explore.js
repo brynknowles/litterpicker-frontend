@@ -3,7 +3,7 @@
 import ProfileList from '../ProfileList'
 import CleanupList from "../CleanupList"
 
-function Explore({ users, cleanups, currentUser, onUpdateProfile, onDeleteUser, cleanupSearchTerm, setCleanupSearchTerm, onUpdateCheer, onUpdateCleanup, onAttendeeSignup, onLeaveEvent, onDeleteCleanup }) {
+function Explore({ handleDeleteAttendee, users, cleanups, currentUser, onUpdateProfile, onDeleteUser, cleanupSearchTerm, setCleanupSearchTerm, onUpdateCheer, onUpdateCleanup, onAttendeeSignup, onLeaveEvent, onDeleteCleanup }) {
 
     // console.log("currentUser in Explore: ",currentUser)
     return (
@@ -14,6 +14,7 @@ function Explore({ users, cleanups, currentUser, onUpdateProfile, onDeleteUser, 
                 onDeleteUser={onDeleteUser} 
             />
             <CleanupList 
+                handleDeleteAttendee={handleDeleteAttendee}
                 currentUser={currentUser}
                 cleanups={cleanups} 
                 cleanupSearchTerm={cleanupSearchTerm} 

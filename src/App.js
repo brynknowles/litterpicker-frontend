@@ -107,20 +107,30 @@ function App() {
     // DONE - Delete Cleanup
   function handleDeleteCleanup(cleanupToDelete) {
     // console.log(cleanupToDelete)
-    const updatedCleanups = cleanups.filter((cleanup) => cleanup.id !== cleanupToDelete.id)
+    const updatedCleanups = cleanups.filter((cleanup) => cleanup.id !== cleanupToDelete)
     setCleanups(updatedCleanups)
   }
     
 
   // **************************************************************************
   // USER_CLEANUPS
-  console.log(cleanups.user_cleanups)
+  console.log(cleanups.keys())
   // console.log(cleanups.users)
 
     // DONE - Sign User up to Cleanup Event
   function handleAttendeeSignup(newAttendee) {
     // console.log("attendee in App: ", newAttendee)
-    setUserCleanups([...userCleanups, newAttendee])
+    // debugger
+    // setUserCleanups([...userCleanups, newAttendee])
+    let currentCleanup = cleanups.map(cleanup => {
+      if (cleanup.id === newAttendee.cleanup.id) {
+        // console.log(cleanup)
+        cleanup.user_cleanups.push(newAttendee)
+      }
+      return cleanup
+    })
+    // console.log(currentCleanup)
+    setCleanups(currentCleanup)
   }
 
   // function handleAttendeeSignup(newAttendee) {
@@ -134,11 +144,20 @@ function App() {
 
 
     // WORK ON THIS - Remove User From Event
-  function handleLeaveEvent(cleanupId) {
+  function handleLeaveEvent(cleanupIdToDelete) {
+    // console.log("cleanupIdToDelete in App: ", cleanupIdToDelete)
+    console.log("hi")
     // console.log("eventAttendeeToLeave in App", eventAttendeeToLeave)
-    const updatedUserCleanups = userCleanups.filter((userCleanup) => userCleanup.id !== cleanupId)
+    // let currentCleanup = cleanups.map(cleanup => cleanup)
+    // const updatedUserCleanups = cleanups.filter((cleanup) => {
+    //   if 
+    // }cleanup.id !== cleanupIdToDelete)
     // setUserCleanups(updatedUserCleanups)
     // setCleanups()
+  }
+
+  function handleDeleteAttendee(attendee) {
+    console.log("attendee in App: ", attendee)
   }
 
   // **************************************************************************
@@ -203,6 +222,7 @@ function App() {
               onAttendeeSignup={handleAttendeeSignup} 
               onLeaveEvent={handleLeaveEvent}
               onDeleteCleanup={handleDeleteCleanup} 
+              handleDeleteAttendee={handleDeleteAttendee}
             /> 
           </Route>
           <Route exact path="/users/:id">
