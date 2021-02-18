@@ -65,7 +65,7 @@ function App() {
   }, [])
 
   // console.log("users in App", users)
-  // console.log("cleanups in App", cleanups)
+  console.log("cleanups in App", cleanups)
   // console.log("userCleanups in App: ", userCleanups)
 
   // **************************************************************************
@@ -114,6 +114,8 @@ function App() {
 
   // **************************************************************************
   // USER_CLEANUPS
+  console.log(cleanups.user_cleanups)
+  // console.log(cleanups.users)
 
     // DONE - Sign User up to Cleanup Event
   function handleAttendeeSignup(newAttendee) {
@@ -121,12 +123,22 @@ function App() {
     setUserCleanups([...userCleanups, newAttendee])
   }
 
+  // function handleAttendeeSignup(newAttendee) {
+  //   // console.log("attendee in App: ", newAttendee)
+  //   setUserCleanups([...userCleanups, newAttendee])
+  //   setCleanups({
+  //     ...cleanups, 
+  //     user_cleanups: [...cleanups.user_cleanups, newAttendee]
+  //   })
+  // }
+
+
     // WORK ON THIS - Remove User From Event
-  function handleLeaveEvent(attendeeToLeave) {
+  function handleLeaveEvent(cleanupId) {
     // console.log("eventAttendeeToLeave in App", eventAttendeeToLeave)
-    const updatedUserCleanups = userCleanups.filter((userCleanup) => userCleanup.id !== attendeeToLeave.id)
-    setUserCleanups(updatedUserCleanups)
-    // setCleanups([...cleanups])
+    const updatedUserCleanups = userCleanups.filter((userCleanup) => userCleanup.id !== cleanupId)
+    // setUserCleanups(updatedUserCleanups)
+    // setCleanups()
   }
 
   // **************************************************************************
@@ -189,7 +201,7 @@ function App() {
               onUpdateCheer={handleUpdateCheer} 
               onUpdateCleanup={handleUpdateCleanup} 
               onAttendeeSignup={handleAttendeeSignup} 
-              // onLeaveEvent={handleLeaveEvent}
+              onLeaveEvent={handleLeaveEvent}
               onDeleteCleanup={handleDeleteCleanup} 
             /> 
           </Route>

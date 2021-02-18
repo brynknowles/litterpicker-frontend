@@ -8,12 +8,12 @@ function CleanupCard({ currentUser, cleanup, onUpdateCheer, onUpdateCleanup, onA
     // console.log("userCleanups in CleanupCard: ", userCleanups)
 
     const { id, name, location, category, image, date, start_time, end_time, comment, cheer, users, user_cleanups } = cleanup
-    // console.log("user_cleanups in CleanupCard: ", user_cleanups)
+    console.log("user_cleanups in CleanupCard: ", user_cleanups)
 
     const [newCheer, setNewCheer] = useState(cheer)
     const [showEditForm, setShowEditForm] = useState(false)
 
-    const eventAttendees = users.map((user) => <li key={user.username}>- {user.username}</li>)
+    const eventAttendees = user_cleanups.map(({user}) => <li key={user.username}>- {user.username}</li>)
 
     const cleanupEventId = user_cleanups.map((userCleanup) => userCleanup.id)
 
@@ -87,28 +87,16 @@ function CleanupCard({ currentUser, cleanup, onUpdateCheer, onUpdateCleanup, onA
 
     function handleLeaveEventClick() {
         fetch(`http://localhost:3000/user_cleanups/${cleanupEventId}`, {
-            method: "DELETE",
-            headers: {
-                'Content-Type': "application/json"
-            }
+            method: "DELETE"
         })
         .then(r => r.json())
         .then(deletedObj => {
             console.log("deletedObj in CleanupCard: ", deletedObj)
-            onLeaveEvent(deletedObj)
+            onLeaveEvent(cleanupEventId)
         })
         window.location.reload()
         console.log("cleanup after delete userCleanup: ", cleanup)
     }
-
-    // function handleEventClick() {
-    //     fetch()
-    //     .then(r => r.json()) 
-    //     .then(deletedObj => {
-    //     onLeaveEvent(cleanupEventID)
-    //     }
-    //     }
-// console.log(cleanup)
 
     return (
         <li className="card">
