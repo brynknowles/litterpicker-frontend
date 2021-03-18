@@ -146,13 +146,10 @@ function App() {
     // WORK ON THIS - Remove User From Event
   function handleLeaveEvent(cleanupIdToDelete) {
     // console.log("cleanupIdToDelete in App: ", cleanupIdToDelete)
-    console.log("hi")
+    // console.log("hi")
     // console.log("eventAttendeeToLeave in App", eventAttendeeToLeave)
-    // let currentCleanup = cleanups.map(cleanup => cleanup)
-    // const updatedUserCleanups = cleanups.filter((cleanup) => {
-    //   if 
-    // }cleanup.id !== cleanupIdToDelete)
-    // setUserCleanups(updatedUserCleanups)
+    const updatedUserCleanups = cleanups.filter((cleanup) => cleanup.id !== cleanupIdToDelete)
+    setUserCleanups(updatedUserCleanups)
     // setCleanups()
   }
 

@@ -62,7 +62,6 @@ function CleanupCard({ handleDeleteAttendee, currentUser, cleanup, onUpdateCheer
             method: "DELETE"
         })
         onDeleteCleanup(id)
-        // window.location.reload()
     }
 
     function handleSignupClick(e) {
@@ -83,7 +82,6 @@ function CleanupCard({ handleDeleteAttendee, currentUser, cleanup, onUpdateCheer
             console.log("newAttendee in POST: ", newAttendee)
             onAttendeeSignup(newAttendee)
         })
-        // window.location.reload()
     }
 
     // handleDeleteAttendee(cleanup)
@@ -97,6 +95,7 @@ function CleanupCard({ handleDeleteAttendee, currentUser, cleanup, onUpdateCheer
     //         // console.log("deletedObj in CleanupCard: ", deletedObj)
     //         // onLeaveEvent(cleanup)
     //     // console.log("cleanup after delete userCleanup: ", cleanup)
+    //             // window.location.reload()
     // }
 
     function handleLeaveEventClick() {
