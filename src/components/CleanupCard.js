@@ -25,10 +25,10 @@ function CleanupCard({ handleDeleteAttendee, currentUser, cleanup, onUpdateCheer
     }
 
     let startTime = new Date(start_time);
-    startTime = new Date(startTime.setHours(startTime.getHours() + 5)); 
+    startTime = new Date(startTime.setHours(startTime.getHours() + 4)); 
 
     let endTime = new Date(end_time);
-    endTime = new Date(endTime.setHours(endTime.getHours() + 5)); 
+    endTime = new Date(endTime.setHours(endTime.getHours() + 4)); 
 
     function toggleEditForm() {
         setShowEditForm(!showEditForm)
