@@ -1,6 +1,6 @@
 # LitterPicker 
 
-LitterPicker is a single page app intended for web browsers. As a user, this event-scheduling/social app allows you to:
+A single page app intended for web browsers. As a user, this event-scheduling/social app allows you to:
 - create neighborhood litter cleanup events
 - view all events
 - update an event
