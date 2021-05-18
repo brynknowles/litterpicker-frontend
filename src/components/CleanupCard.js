@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { format } from "date-fns";
-import EditCleanupForm from './EditCleanupForm';
+import EditCleanupForm from './EditCleanupForm'
 
 function CleanupCard({ handleDeleteAttendee, currentUser, cleanup, onUpdateCheer, onUpdateCleanup, onAttendeeSignup, onLeaveEvent, onDeleteCleanup }) {
     // console.log("cleanup.id in CleanupCard: ", cleanup.id)
@@ -10,13 +10,20 @@ function CleanupCard({ handleDeleteAttendee, currentUser, cleanup, onUpdateCheer
     const { id, name, location, category, image, date, start_time, end_time, comment, cheer, users, user_cleanups } = cleanup
     // console.log("user_cleanups in CleanupCard: ", user_cleanups)
 
+    const [show, setShow] = useState(false)
+    const [showCleanupEditForm, setShowCleanupEditForm] = useState(false)
+
     const [newCheer, setNewCheer] = useState(cheer)
-    const [showEditForm, setShowEditForm] = useState(false)
+    // const [showEditForm, setShowEditForm] = useState(false)
 
     const eventAttendees = user_cleanups.map(({user}) => <li key={user.username}>- {user.username}</li>)
 
     const userCleanupId = user_cleanups.map((userCleanup) => userCleanup.id)
     console.log("userCleanupId in CleanupCard: ", userCleanupId)
+
+    function showModal() {
+        setShow(true)
+    }
 
     function changeDate(str) {
         let updatedDate = new Date(str.split('-'))
@@ -29,10 +36,6 @@ function CleanupCard({ handleDeleteAttendee, currentUser, cleanup, onUpdateCheer
 
     let endTime = new Date(end_time);
     endTime = new Date(endTime.setHours(endTime.getHours() + 4)); 
-
-    function toggleEditForm() {
-        setShowEditForm(!showEditForm)
-    }
 
     function handleCheersClick(event) {
         event.preventDefault()
@@ -84,6 +87,10 @@ function CleanupCard({ handleDeleteAttendee, currentUser, cleanup, onUpdateCheer
         })
     }
 
+    function toggleEditForm() {
+        setShowCleanupEditForm(!showCleanupEditForm)
+    }
+
     // handleDeleteAttendee(cleanup)
 
     // function handleLeaveEventClick() {
@@ -129,19 +136,19 @@ function CleanupCard({ handleDeleteAttendee, currentUser, cleanup, onUpdateCheer
                     {eventAttendees}
                 </ul>
             </div>
-            <button onClick={handleSignupClick}>Sign Up To Event</button>
-            <button onClick={handleLeaveEventClick}>Leave Event</button>
-            <button onClick={toggleEditForm}>Edit Event</button>
-            {showEditForm ? (
-                <EditCleanupForm 
-                    cleanup={cleanup} 
-                    onUpdateCleanup={onUpdateCleanup} 
-                />
-                ) : (
-                    null
-                )
-            }
+            <button key="signup" onClick={handleSignupClick}>Sign Up To Event</button>
+            <button key="leave" onClick={handleLeaveEventClick}>Leave Event</button>
             <button className="button" onClick={handleDeleteClick}>Cancel Event</button>
+            <button className="button" onClick={toggleEditForm}>Edit Cleanup</button>
+                {showCleanupEditForm ? (
+                    <EditCleanupForm 
+                        cleanup={cleanup}
+                        onUpdateCleanup={onUpdateCleanup}
+                    />
+                    ) : ( 
+                        null 
+                    )
+                }
         </li>
     )
 }
