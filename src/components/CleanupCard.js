@@ -136,10 +136,9 @@ function CleanupCard({ handleDeleteAttendee, currentUser, cleanup, onUpdateCheer
                     {eventAttendees}
                 </ul>
             </div>
-            <button key="signup" onClick={handleSignupClick}>Sign Up To Event</button>
+            <button key="signup" onClick={handleSignupClick}>Attend Event</button>
             <button key="leave" onClick={handleLeaveEventClick}>Leave Event</button>
-            <button className="button" onClick={handleDeleteClick}>Cancel Event</button>
-            <button className="button" onClick={toggleEditForm}>Edit Cleanup</button>
+            <button className="button" onClick={toggleEditForm}>Edit Event</button>
                 {showCleanupEditForm ? (
                     <EditCleanupForm 
                         cleanup={cleanup}
@@ -149,6 +148,7 @@ function CleanupCard({ handleDeleteAttendee, currentUser, cleanup, onUpdateCheer
                         null 
                     )
                 }
+            <button className="button" onClick={handleDeleteClick}>Cancel Event</button>
         </li>
     )
 }
